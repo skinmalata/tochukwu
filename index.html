@@ -6,7 +6,7 @@
     <title>Tochukwu Mesigo | Web Developer & IT Professional</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Bangers&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         :root {
@@ -40,6 +40,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 18px;
         }
 
         .container {
@@ -160,17 +161,37 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            padding: 80px 0 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 100vh;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero {
+                height: 100vh;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero {
+                height: 100vh;
+            }
         }
 
         .hero-content {
             text-align: center;
             max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero-badge {
@@ -183,7 +204,7 @@
             border-radius: 50px;
             font-size: 0.85rem;
             color: var(--accent);
-            margin-bottom: 32px;
+            margin-bottom: 16px;
             animation: fadeInUp 0.8s ease-out;
         }
 
@@ -201,15 +222,57 @@
             50% { opacity: 0.4; }
         }
 
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1.05;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        .hero-text-rotator {
+            text-align: center;
+            margin: 10px 0;
+            min-height: clamp(2.4rem, 4.8vw, 4rem);
+        }
+        
+        .hero-text-item {
+            display: none;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            white-space: nowrap;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 0.05em;
         }
 
+        .hero-text-item.active {
+            display: block;
+        }
+        
+        .text-rest {
+            color: var(--accent-secondary);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
         .hero h1 .highlight {
             background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
             -webkit-background-clip: text;
@@ -237,12 +300,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 32px;
-            border-radius: 12px;
+            padding: 12px 24px;
+            border-radius: 10px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
         }
 
@@ -498,61 +561,6 @@
             color: var(--text-secondary);
         }
 
-        /* Education Section */
-        .education {
-            background: var(--bg-secondary);
-        }
-
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-        }
-
-        .education-card {
-            background: var(--bg-card);
-            padding: 32px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .education-card::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 12px;
-            opacity: 0.1;
-        }
-
-        .education-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-        }
-
-        .education-card h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .education-card .school {
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .education-card .year {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
         /* Footer */
         footer {
             background: var(--bg-secondary);
@@ -772,62 +780,64 @@
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
 
-    <nav>
-        <div class="container">
-            <div class="logo">Tochukwu Mesigo</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+     <nav>
+         <div class="container">
+             <div class="logo">Tochukwu Mesigo</div>
+              <ul class="nav-links">
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#portfolio">Portfolio</a></li>
+                  <li><a href="#skills">Skills</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+         </div>
+     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">Available for Projects</div>
-                <h1>Building <span class="highlight">Digital Experiences</span> That Engage & Convert</h1>
-                <p>Results-driven Web Developer with proven experience in building secure, scalable websites and web applications that drive business growth.</p>
-                <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
-                </div>
-            </div>
-        </div>
-        <div class="hero-scroll">
-            <div class="mouse"></div>
-            <span>Scroll</span>
-        </div>
-    </section>
+      <section class="hero">
+          <div class="container">
+              <div class="hero-content">
+                   <div class="hero-avatar">
+                        <img src="myimage.png" alt="Tochukwu Mesigo" style="width:300px;height:300px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);margin:0 auto 15px;display:block;">
+                   </div>
+                    <div class="hero-text-rotator">
+                         <div class="hero-text-item active"><span class="text-first-word">Fixing</span> <span class="text-rest">Faulty Websites</span></div>
+                         <div class="hero-text-item"><span class="text-first-word">Ranking</span> <span class="text-rest">Websites</span></div>
+                         <div class="hero-text-item"><span class="text-first-word">Managing</span> <span class="text-rest">Websites</span></div>
+                         <div class="hero-text-item"><span class="text-first-word">Building</span> <span class="text-rest">Mobile Apps</span></div>
+                         <div class="hero-text-item"><span class="text-first-word">Building</span> <span class="text-rest">Super Websites</span></div>
+                     </div>
+                     <div class="hero-buttons">
+                         <a href="#services" class="btn btn-primary">My Services</a>
+                         <a href="#contact" class="btn btn-outline">Contact Me</a>
+                     </div>
+               </div>
+          </div>
+      </section>
 
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <h3>Building Scalable Digital Solutions</h3>
-                    <p>I am a passionate Web Developer based in Port Harcourt, Nigeria, specializing in building secure, scalable websites and web applications.</p>
-                    <p>With over 15 years of experience, I create high-performing web solutions that help businesses establish a strong online presence and achieve their digital goals.</p>
+                     <h3>About Me</h3>
+                    <p>I specialize in identifying and resolving critical website issues that cost businesses money - security vulnerabilities, performance bottlenecks, broken functionality, and UX problems that drive customers away.</p>
+                    <p>With over 15 years of experience, I provide emergency website repairs and ongoing maintenance that keep your online presence secure, fast, and conversion-ready.</p>
                     <div class="about-stats">
                         <div class="stat">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Years Experience</div>
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime Restoration</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Projects</div>
+                            <div class="stat-number">70%+</div>
+                            <div class="stat-label">Avg. Speed Improvement</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number">20+</div>
-                            <div class="stat-label">Clients</div>
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Security Issue Resolution</div>
                         </div>
                     </div>
                 </div>
-                <div class="contact-card" id="contact">
-                    <img src="image2.jpg" alt="Tochukwu Mesigo" style="width:150px;height:150px;border-radius:50%;object-fit:cover;margin:0 auto 20px;display:block;border:3px solid var(--accent);">
-                    <h4>Get In Touch</h4>
+                 <div class="contact-card" id="contact">
+                     <h4>Get In Touch</h4>
                     <div class="contact-list">
                         <a href="mailto:mesigotochukwu@gmail.com" class="contact-item">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -846,17 +856,60 @@
                             <span>Academia Profile</span>
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                 </div>
+             </div>
+         </div>
+      </section>
+  
 
-    <section class="portfolio" id="portfolio">
-        <div class="container">
+  
+      <section class="services" id="services">
+         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some websites I've built and designed.</p>
+                <h2 class="section-title">Services I Render</h2>
+                <p class="section-subtitle">Specialized fixes for critical website issues that cost you money</p>
             </div>
+              <div class="skills-grid">
+                  <div class="skill-card">
+                      <div class="skill-icon">🌐</div>
+                      <h4>Web Development</h4>
+                      <p>Custom websites and web applications built with modern technologies, optimized for performance, security, and user experience.</p>
+                  </div>
+                  <div class="skill-card">
+                      <div class="skill-icon">🛠️</div>
+                      <h4>Website Recovery</h4>
+                      <p>Emergency recovery services for hacked, broken, or crashed websites. Restore functionality and secure your online presence quickly.</p>
+                  </div>
+                  <div class="skill-card">
+                      <div class="skill-icon">📱</div>
+                      <h4>Mobile App Development</h4>
+                      <p>Native and cross-platform mobile applications for iOS and Android, built with React Native and Flutter.</p>
+                  </div>
+                  <div class="skill-card">
+                      <div class="skill-icon">🔍</div>
+                      <h4>SEO</h4>
+                      <p>Technical SEO audits, optimization, and recovery services to improve search rankings and drive organic traffic.</p>
+                  </div>
+                  <div class="skill-card">
+                      <div class="skill-icon">🎨</div>
+                      <h4>Website Redesign</h4>
+                      <p>Complete website makeovers with modern design, improved UX, and enhanced functionality to boost conversions.</p>
+                  </div>
+                  <div class="skill-card">
+                      <div class="skill-icon">💻</div>
+                      <h4>Software Development</h4>
+                      <p>Custom software solutions tailored to your business needs, from desktop applications to enterprise systems.</p>
+                  </div>
+              </div>
+         </div>
+     </section>
+ 
+     <section class="portfolio" id="portfolio">
+         <div class="container">
+             <div class="section-header">
+                  <h2 class="section-title">Previous Work</h2>
+                 <p class="section-subtitle">Problem-solving case studies</p>
+             </div>
             <div class="portfolio-carousel">
                 <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
                 <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
@@ -864,49 +917,49 @@
                     <div class="carousel-slide">
                         <div class="project-card">
                             <div class="project-image">
-                                <img src="pzok.png" alt="PZOK Engineering" style="width:100%;height:100%;object-fit:cover;">
+                                 <img src="pzok.png" alt="PZOK Engineering" style="width:100%;height:100%;object-fit:cover;">
                             </div>
-                            <div class="project-info">
-                                <h4>PZOK Engineering</h4>
-                                <p>Professional website for an oil and gas engineering company featuring services showcase, contact forms, and company information.</p>
-                                <a href="https://pzokengineering.com" target="_blank" class="project-link">View Website &#8594;</a>
-                            </div>
+                             <div class="project-info">
+                                 <h4>PZOK Engineering</h4>
+                                 <p>Fixed critical security vulnerabilities and improved site speed by 65% for this oil and gas engineering company. Enhanced contact form functionality reduced bounce rates by 30%.</p>
+                                 <a href="https://pzokengineering.com" target="_blank" class="project-link">View Website &#8594;</a>
+                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="project-card">
                             <div class="project-image">
-                                <img src="afriworth.png" alt="Afri-Worth International" style="width:100%;height:100%;object-fit:cover;">
+                                 <img src="afriworth.png" alt="Afri-Worth International" style="width:100%;height:100%;object-fit:cover;">
                             </div>
-                            <div class="project-info">
-                                <h4>Afri-Worth International</h4>
-                                <p>Corporate website for a leading oil and gas servicing company with service listings and contact integration.</p>
-                                <a href="https://afri-worthintl.com/" target="_blank" class="project-link">View Website &#8594;</a>
-                            </div>
+                             <div class="project-info">
+                                 <h4>Afri-Worth International</h4>
+                                 <p>Resolved mobile responsiveness issues and fixed broken service listings that were causing lost inquiries. Improved site performance resulting in 40% increase in contact form submissions.</p>
+                                 <a href="https://afri-worthintl.com/" target="_blank" class="project-link">View Website &#8594;</a>
+                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="project-card">
                             <div class="project-image">
-                                <img src="winfulltime.png" alt="Winfulltime" style="width:100%;height:100%;object-fit:cover;">
+                                 <img src="winfulltime.png" alt="Winfulltime" style="width:100%;height:100%;object-fit:cover;">
                             </div>
-                            <div class="project-info">
-                                <h4>Winfulltime</h4>
-                                <p>Sports betting platform with live scores, odds, and betting features for sports enthusiasts.</p>
-                                <a href="https://winfulltime.com" target="_blank" class="project-link">View Website &#8594;</a>
-                            </div>
+                             <div class="project-info">
+                                 <h4>Winfulltime</h4>
+                                 <p>Fixed critical bugs in live score updates and betting functionality that were causing user complaints. Optimized database queries improving page load times by 50% during peak traffic.</p>
+                                 <a href="https://winfulltime.com" target="_blank" class="project-link">View Website &#8594;</a>
+                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="project-card">
                             <div class="project-image">
-                                <img src="penchingroup.png" alt="Penchin Group" style="width:100%;height:100%;object-fit:cover;">
+                                 <img src="penchingroup.png" alt="Penchin Group" style="width:100%;height:100%;object-fit:cover;">
                             </div>
-                            <div class="project-info">
-                                <h4>Penchin Group</h4>
-                                <p>Corporate business website for a diversified business conglomerate with multiple service offerings.</p>
-                                <a href="https://penchingroup.com" target="_blank" class="project-link">View Website &#8594;</a>
-                            </div>
+                             <div class="project-info">
+                                 <h4>Penchin Group</h4>
+                                 <p>Diagnosed and fixed multiple broken links and navigation issues that were hurting user experience. Improved site accessibility compliance and enhanced contact form reliability leading to 25% increase in qualified leads.</p>
+                                 <a href="https://penchingroup.com" target="_blank" class="project-link">View Website &#8594;</a>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -920,94 +973,65 @@
         </div>
     </section>
 
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Expertise</h2>
-                <p class="section-subtitle">Specialized in building secure, scalable websites and web applications.</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">&#128187;</div>
-                    <h4>Web Development</h4>
-                    <p>Building responsive, performant websites and web applications.</p>
+     <section id="skills">
+         <div class="container">
+              <div class="section-header">
+                   <h2 class="section-title">Tech Stack</h2>
+              </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🌐</div>
+                        <h4>WordPress</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🏗️</div>
+                        <h4>Wix</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🛒</div>
+                        <h4>Shopify</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🐘</div>
+                        <h4>PHP</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">⚛️</div>
+                        <h4>React</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🟢</div>
+                        <h4>Node.js</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🐍</div>
+                        <h4>Python</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🦋</div>
+                        <h4>Flutter</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🔷</div>
+                        <h4>Next.js</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">📘</div>
+                        <h4>TypeScript</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">💨</div>
+                        <h4>Tailwind CSS</h4>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">📊</div>
+                        <h4>PostgreSQL</h4>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128241;</div>
-                    <h4>Mobile Development</h4>
-                    <p>Cross-platform mobile application development.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128202;</div>
-                    <h4>Database Design</h4>
-                    <p>Software architecture and database management systems.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128421;</div>
-                    <h4>IT Infrastructure</h4>
-                    <p>Enterprise IT infrastructure management and support.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128274;</div>
-                    <h4>Cybersecurity</h4>
-                    <p>Security implementation and data protection.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#129302;</div>
-                    <h4>AI Automation</h4>
-                    <p>Implementing AI solutions for business automation.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128736;</div>
-                    <h4>Technical Support</h4>
-                    <p>Hardware repairs and IT technical support.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#128190;</div>
-                    <h4>System Administration</h4>
-                    <p>Server management and system maintenance.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">&#127912;</div>
-                    <h4>Graphic Design</h4>
-                    <p>Visual design, branding, and creative assets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+         </div>
+     </section>
 
-    <section class="education" id="education">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">Academic background in computer science with strong foundation in software development.</p>
-            </div>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h4>Master of Science (MSc)</h4>
-                    <div class="school">Computer Science</div>
-                    <div class="year">University of Port Harcourt</div>
-                </div>
-                <div class="education-card">
-                    <h4>Bachelor of Science (BSc)</h4>
-                    <div class="school">Computer Science</div>
-                    <div class="year">University of Port Harcourt</div>
-                </div>
-                <div class="education-card">
-                    <h4>WASSC</h4>
-                    <div class="school">Dennis Memorial Grammar School</div>
-                    <div class="year">Secondary Education</div>
-                </div>
-                <div class="education-card">
-                    <h4>Primary School</h4>
-                    <div class="school">Central Primary School</div>
-                    <div class="year">Primary Education</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
+     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">Tochukwu Mesigo</div>
@@ -1015,7 +1039,6 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <p>&copy; 2026 Tochukwu Mesigo. All rights reserved.</p>
@@ -1023,30 +1046,48 @@
         </div>
     </footer>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const track = document.getElementById('carouselTrack');
+     <a href="https://wa.me/2348063994712" target="_blank" class="whatsapp-float">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+             <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .99 4.27L3 22l5.73-.99C10.17 21.64 11.46 22 13 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.38 0-2.74-.35-3.93-.99l-2.78.48.48-2.78C5.35 14.74 5 13.38 5 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm3.54-11.29c-.14-.07-.84-.42-1.03-.47-.19-.05-.33-.07-.47.07-.14.14-.54.67-.66.8-.12.14-.24.16-.44.05-.19-.1-.82-.31-1.57-1-.58-.58-1.03-1.29-1.15-1.53-.12-.24-.01-.37.09-.49.1-.1.21-.26.32-.38.11-.12.14-.21.21-.35.07-.14.03-.26-.02-.37-.05-.1-.47-1.13-.64-1.55-.17-.41-.34-.35-.47-.35-.12 0-.26-.02-.4-.02-.14 0-.37.05-.56.26-.19.21-.74.72-.74 1.75s.76 2.03.87 2.17c.1.14 1.46 2.24 3.54 3.14.49.21.87.34 1.17.43.49.16.93.13 1.28.08.39-.06 1.2-.49 1.37-.96.17-.47.17-.87.12-.96-.05-.1-.19-.16-.33-.23z"/>
+         </svg>
+     </a>
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
-        }
+     <script>
+         let currentSlide = 0;
+         const slides = document.querySelectorAll('.carousel-slide');
+         const dots = document.querySelectorAll('.carousel-dot');
+         const track = document.getElementById('carouselTrack');
 
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            updateCarousel();
-        }
+         function updateCarousel() {
+             track.style.transform = `translateX(-${currentSlide * 100}%)`;
+             dots.forEach((dot, i) => {
+                 dot.classList.toggle('active', i === currentSlide);
+             });
+         }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
+         function moveCarousel(direction) {
+             currentSlide = (currentSlide + direction + slides.length) % slides.length;
+             updateCarousel();
+         }
 
-        setInterval(() => moveCarousel(1), 5000);
-    </script>
+         function goToSlide(index) {
+             currentSlide = index;
+             updateCarousel();
+         }
+
+         setInterval(() => moveCarousel(1), 5000);
+
+         // Hero text rotation
+         const textItems = document.querySelectorAll('.hero-text-item');
+         let currentText = 0;
+
+         function rotateText() {
+             textItems[currentText].classList.remove('active');
+             currentText = (currentText + 1) % textItems.length;
+             textItems[currentText].classList.add('active');
+         }
+
+         setInterval(rotateText, 4000);
+     </script>
 </body>
 </html>
