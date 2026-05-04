@@ -109,6 +109,34 @@
             height: 80px;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.8rem;
@@ -171,9 +199,31 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                height:100vh;
+            .hamburger {
+                display: flex;
             }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                height: 100vh;
+            }
+        }
         }
         }
         
@@ -794,10 +844,15 @@
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
 
-     <nav>
-         <div class="container">
-             <div class="logo">Tochukwu Mesigo</div>
-              <ul class="nav-links">
+      <nav>
+          <div class="container">
+              <div class="logo">Tochukwu Mesigo</div>
+              <div class="hamburger" id="hamburgerMenu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+              <ul class="nav-links" id="navLinks">
                   <li><a href="#home">Home</a></li>
                   <li><a href="#about">About</a></li>
                   <li><a href="#services">Services</a></li>
@@ -806,8 +861,8 @@
                   <li><a href="blogs.html">Blogs</a></li>
                   <li><a href="#contact">Contact</a></li>
               </ul>
-         </div>
-     </nav>
+          </div>
+      </nav>
 
       <section class="hero">
           <div class="container">
@@ -1067,8 +1122,25 @@
          </svg>
      </a>
 
-     <script>
-         let currentSlide = 0;
+      <script>
+          // Hamburger menu toggle
+          const hamburger = document.getElementById('hamburgerMenu');
+          const navLinks = document.getElementById('navLinks');
+
+          hamburger.addEventListener('click', function() {
+              hamburger.classList.toggle('active');
+              navLinks.classList.toggle('active');
+          });
+
+          // Close menu when clicking a link
+          navLinks.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', function() {
+                  hamburger.classList.remove('active');
+                  navLinks.classList.remove('active');
+              });
+          });
+
+          let currentSlide = 0;
          const slides = document.querySelectorAll('.carousel-slide');
          const dots = document.querySelectorAll('.carousel-dot');
          const track = document.getElementById('carouselTrack');
