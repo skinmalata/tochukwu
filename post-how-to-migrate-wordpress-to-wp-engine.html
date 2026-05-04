@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Migrate Your WordPress Site to WP Engine (Step-by-Step Guide) | Tochukwu Mesigo</title>
+    <meta name="description" content="Learn how to migrate your WordPress site to WP Engine with this complete step-by-step guide. Covers backups, migration plugin, DNS updates, testing, and troubleshooting.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-how-to-migrate-wordpress-to-wp-engine.html">
+    <meta property="og:title" content="How to Migrate Your WordPress Site to WP Engine (Step-by-Step Guide) | Tochukwu Mesigo">
+    <meta property="og:description" content="Learn how to migrate your WordPress site to WP Engine with this complete step-by-step guide. Covers backups, migration plugin, DNS updates, testing, and troubleshooting.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-05-04">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #14141c;
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --accent-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a9e;
+            --text-muted: #55556a;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 212, 170, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .blog-post {
+            max-width: 900px;
+            margin: 140px auto 80px;
+            padding: 0 24px;
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 48px 0 24px;
+            color: var(--accent);
+        }
+
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .post-content strong {
+            color: var(--text-primary);
+        }
+
+        .post-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .post-content th, .post-content td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-content th {
+            background: var(--bg-secondary);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .post-content .check {
+            color: var(--accent);
+        }
+
+        .post-content .cross {
+            color: #ff6b6b;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 16px 0 16px 40px;
+            color: var(--text-secondary);
+        }
+
+        .post-content li {
+            margin-bottom: 8px;
+        }
+
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #00b894);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .winner-box {
+            background: rgba(0, 212, 170, 0.08);
+            border: 1px solid rgba(0, 212, 170, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .winner-box h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .faq {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .disclosure {
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 40px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .related-posts {
+            margin: 40px 0;
+        }
+
+        .related-posts ul {
+            margin: 16px 0 16px 40px;
+            color: var(--text-secondary);
+        }
+
+        .related-posts a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .back-to-blogs {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .post-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .post-content table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Migrate Your WordPress Site to WP Engine (Step-by-Step Guide)",
+      "description": "Learn how to migrate your WordPress site to WP Engine with this complete step-by-step guide. Covers backups, migration plugin, DNS updates, testing, and troubleshooting.",
+      "author": {
+        "@type": "Person",
+        "name": "Tochukwu Mesigo",
+        "url": "https://tochukwumesigo.com"
+      },
+      "datePublished": "2026-05-04",
+      "dateModified": "2026-05-04",
+      "publisher": {
+        "@type": "Person",
+        "name": "Tochukwu Mesigo"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does it take to migrate a WordPress site to WP Engine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A typical WordPress migration to WP Engine takes 30 minutes to 2 hours depending on your site size. Small sites under 1GB can migrate in under 30 minutes using the WP Engine migration plugin. Larger sites or those with complex databases may take longer. DNS propagation after the migration adds an additional 1-48 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will my website go down during the migration to WP Engine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, your site stays live during the entire migration process. The WP Engine migration creates a copy of your site on their servers first. Your original site remains untouched until you update your DNS settings. Even during DNS propagation, visitors will see either the old or new site—never an error page."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can WP Engine migrate my site for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. WP Engine offers free automated migration through their migration plugin. For more complex migrations, WP Engine also provides complimentary professional migration support from their expert team. You can request this through your user portal after signing up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to cancel my old hosting after migrating to WP Engine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You should keep your old hosting active until you confirm the migration is fully working and DNS has propagated (usually 24-48 hours). After verifying everything works on WP Engine, you can safely cancel your old hosting. Don't cancel prematurely—you may need the old site as a fallback."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">How to Migrate Your WordPress Site to WP Engine (Step-by-Step Guide)</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist | Published: May 4, 2026</div>
+        </div>
+
+        <div class="post-content">
+            <p>Migrating your WordPress site to a new host sounds intimidating, but I've done this process hundreds of times for clients and I can tell you: it's straightforward when you follow the right steps. Whether you're moving from Bluehost, SiteGround, GoDaddy, or any other host, this guide will walk you through every single step.</p>
+
+            <p>I've seen migrations go smoothly and I've seen them go sideways when people skip steps. This guide is designed to help you avoid the pitfalls. By the end, your site will be running on WP Engine's lightning-fast infrastructure with zero downtime.</p>
+
+            <p>Let's get started.</p>
+
+            <h2>What You'll Need Before Starting</h2>
+
+            <p>Before you begin the migration, make sure you have the following ready:</p>
+
+            <ul>
+                <li><strong>Access to your current WordPress admin dashboard</strong> (wp-admin)</li>
+                <li><strong>FTP/SFTP credentials</strong> for your current host (in case the plugin method fails)</li>
+                <li><strong>Access to your domain registrar or DNS provider</strong> (GoDaddy, Namecheap, Cloudflare, etc.)</li>
+                <li><strong>A WP Engine account</strong> (you can <a href="https://wpengine.com/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">sign up here</a> — use code <strong>WPE20</strong> for 20% off)</li>
+                <li><strong>Your current hosting login credentials</strong></li>
+            </ul>
+
+            <p>Don't have a WP Engine account yet? No problem — I'll walk you through that in Step 2.</p>
+
+            <h2>Step 1: Back Up Your Current Site</h2>
+
+            <p><strong>This is the most critical step.</strong> Never, ever start a migration without a fresh backup. I've learned this the hard way early in my career, and I refuse to let you make the same mistake.</p>
+
+            <h3>Option A: Use a Backup Plugin</h3>
+
+            <p>The easiest way to create a complete backup is with a plugin. Here are my top recommendations:</p>
+
+            <ul>
+                <li><strong><a href="https://wordpress.org/plugins/updraftplus/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">UpdraftPlus</a></strong> — Free, reliable, and creates both file and database backups. My go-to choice for most migrations.</li>
+                <li><strong><a href="https://wordpress.org/plugins/duplicator/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Duplicator</a></strong> — Creates a complete site package (files + database) that can be used for migration. This doubles as both a backup and migration tool.</li>
+                <li><strong><a href="https://wordpress.org/plugins/all-in-one-wp-migration/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">All-in-One WP Migration</a></strong> — Simple export/import tool that works well for smaller sites.</li>
+            </ul>
+
+            <h3>Option B: Manual Backup via Your Host</h3>
+
+            <p>Most hosting providers offer built-in backup tools. Log into your current hosting control panel (cPanel, Plesk, or a custom dashboard) and look for:</p>
+
+            <ul>
+                <li><strong>Backup Wizard</strong> — Usually found in cPanel under the "Files" section</li>
+                <li><strong>JetBackup</strong> — Common on many shared hosts</li>
+                <li><strong>Automated daily backups</strong> — Check if your host already has recent backups you can download</li>
+            </ul>
+
+            <h3>Option C: Manual Backup via FTP + phpMyAdmin</h3>
+
+            <p>For the technically inclined, you can manually back up your site:</p>
+
+            <ol>
+                <li>Connect to your site via <strong>FTP/SFTP</strong> using FileZilla or your preferred client</li>
+                <li>Download the entire <code>public_html</code> (or <code>www</code>) folder to your computer</li>
+                <li>Export your database via <strong>phpMyAdmin</strong> — go to your database, click "Export," and choose "Quick" method with SQL format</li>
+            </ol>
+
+            <div class="winner-box">
+                <h4>Pro Tip</h4>
+                <p>Store your backup in at least two places — your local computer AND a cloud service like Google Drive or Dropbox. Redundancy saves lives (or at least websites).</p>
+            </div>
+
+            <h3>Verify Your Backup</h3>
+
+            <p>After creating the backup, check that the file size looks reasonable and that the backup file isn't corrupted. A typical WordPress site backup ranges from 100MB to 2GB depending on media files. If your backup is only a few kilobytes, something went wrong.</p>
+
+            <h2>Step 2: Create Your WP Engine Account</h2>
+
+            <p>If you haven't already, head to <a href="https://wpengine.com/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WP Engine's website</a> and sign up for an account. Here's what to expect:</p>
+
+            <ol>
+                <li><strong>Choose your plan</strong> — The Startup plan ($20/month) is perfect for a single site. If you have multiple sites, the Professional plan supports up to 10 sites.</li>
+                <li><strong>Complete the signup process</strong> — You'll need to provide payment information. Use code <strong>WPE20</strong> to get 20% off your first payment.</li>
+                <li><strong>Set up your install</strong> — Once logged into the WP Engine User Portal, click "Create Install" and give your site a name. This creates a staging URL like <code>yoursitename.wpengine.com</code> where your migrated site will live.</li>
+            </ol>
+
+            <p>Take note of your <strong>WP Engine install name</strong> and the <strong>SFTP credentials</strong> provided in the portal — you'll need these for the migration.</p>
+
+            <p>Need help choosing a plan? I break down the options in my <a href="post-wp-engine-review.html" style="color: var(--accent);">full WP Engine review</a>.</p>
+
+            <h2>Step 3: Migrate Your Site to WP Engine</h2>
+
+            <p>Now comes the actual migration. WP Engine offers two main methods — I'll cover both.</p>
+
+            <h3>Method A: WP Engine Automated Migration Plugin (Recommended)</h3>
+
+            <p>This is the easiest and most reliable method for most users. WP Engine provides a free migration plugin that handles everything for you.</p>
+
+            <ol>
+                <li><strong>Install the plugin on your current site:</strong> In your WordPress dashboard, go to Plugins → Add New, then search for <strong>"WP Engine Automated Migration"</strong> (<a href="https://wordpress.org/plugins/wpengine-automigration/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">or get it from the WordPress plugin directory</a>). Install and activate it.</li>
+                <li><strong>Get your migration credentials:</strong> Log into your WP Engine User Portal. Go to your install → Settings → Migrations. You'll find your migration key and email/transfer URL.</li>
+                <li><strong>Enter credentials in the plugin:</strong> Back in your WordPress dashboard, go to WP Engine Migration → Settings. Enter the migration key and your WP Engine account email.</li>
+                <li><strong>Start the migration:</strong> Click "Start Migration." The plugin will begin transferring your files and database to WP Engine's servers.</li>
+                <li><strong>Wait for completion:</strong> Depending on your site size, this can take anywhere from 10 minutes to a few hours. You'll receive an email notification when it's done. You can also check the progress in the plugin dashboard.</li>
+            </ol>
+
+            <div class="winner-box">
+                <h4>Important</h4>
+                <p>During the migration, continue using your site as normal. The migration plugin works in the background and creates a snapshot of your site. Any changes made after the migration starts won't be transferred — so avoid publishing new posts or making significant changes during this window.</p>
+            </div>
+
+            <h3>Method B: Duplicator Plugin (Alternative)</h3>
+
+            <p>If for some reason the WP Engine migration plugin doesn't work with your setup, the <a href="https://wordpress.org/plugins/duplicator/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Duplicator plugin</a> is a reliable fallback that I've used successfully on dozens of migrations.</p>
+
+            <ol>
+                <li>Install and activate Duplicator on your current site</li>
+                <li>Create a new "Package" — this bundles your files and database into a portable archive</li>
+                <li>Download both the <strong>installer.php</strong> file and the <strong>archive file</strong> (usually a .zip or .daf)</li>
+                <li>Upload both files to your WP Engine install via <strong>SFTP</strong> using the credentials from your WP Engine portal</li>
+                <li>Visit <code>yourdomain.wpengine.com/installer.php</code> in your browser and follow the Duplicator setup wizard</li>
+                <li>Complete the installation — Duplicator will import your database and configure wp-config.php automatically</li>
+                <li>Delete the installer files after completion (Duplicator prompts you to do this)</li>
+            </ol>
+
+            <h3>Method C: Request Free Professional Migration</h3>
+
+            <p>If your site is complex (large e-commerce store, multisite, custom applications), WP Engine offers <strong>free professional migration assistance</strong>. After signing up, submit a migration request through your user portal and their team will handle the entire process for you. This is especially useful if you're not comfortable with the technical steps above.</p>
+
+            <p>For detailed instructions, you can always reference the <a href="https://wpengine.com/support/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WP Engine support documentation</a>, which covers migration in depth.</p>
+
+            <h2>Step 4: Test Your Site on WP Engine (Before Going Live)</h2>
+
+            <p>After the migration completes, your site is live on WP Engine's staging URL — something like <code>yoursitename.wpengine.com</code>. <strong>Do not skip testing.</strong> This is where you catch issues before your visitors see them.</p>
+
+            <h3>What to Test:</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Item</th>
+                        <th>What to Check</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Homepage</strong></td>
+                        <td>Loads correctly, all images display, layout intact</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internal pages</strong></td>
+                        <td>Test key pages (About, Services, Contact, blog posts)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Forms</strong></td>
+                        <td>Submit test entries through contact forms, checkout flows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>E-commerce</strong></td>
+                        <td>Add to cart, complete a test purchase, verify payment processing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Media library</strong></td>
+                        <td>All images, videos, and files transferred correctly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plugins</strong></td>
+                        <td>All plugins activated and functioning as expected</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Permalinks</strong></td>
+                        <td>Go to Settings → Permalinks and click "Save Changes" to reset them</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SSL/HTTPS</strong></td>
+                        <td>WP Engine provides free SSL — verify the padlock appears</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Admin login</strong></td>
+                        <td>Confirm you can log into wp-admin on the new server</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Fix Broken Links</h3>
+
+            <p>If you notice broken links or missing images, it's usually a search-and-replace issue with the database URLs. WP Engine handles this automatically with their migration plugin, but if you used Duplicator or a manual method, you may need to run a search and replace. The <a href="https://wordpress.org/plugins/better-search-replace/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Better Search Replace plugin</a> works well for this — just replace your old domain with your new WP Engine staging URL.</p>
+
+            <h3>Check Performance</h3>
+
+            <p>Run a speed test on your WP Engine staging URL using <a href="https://developers.google.com/speed/pagespeed/insights/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights</a>. You should see immediate improvements compared to your old host. WP Engine's EverCache and CDN typically deliver significantly better Core Web Vitals scores.</p>
+
+            <h2>Step 5: Update Your DNS Settings</h2>
+
+            <p>Once you've confirmed everything works on the staging URL, it's time to point your domain to WP Engine. This is done by updating your DNS records.</p>
+
+            <h3>Find Your WP Engine IP Addresses</h3>
+
+            <p>In your WP Engine User Portal, go to your install → Domains. WP Engine will provide you with:</p>
+
+            <ul>
+                <li><strong>A record IP address</strong> — for pointing your root domain (example.com)</li>
+                <li><strong>CNAME target</strong> — for pointing your www subdomain (www.example.com)</li>
+            </ul>
+
+            <h3>Update DNS at Your Registrar</h3>
+
+            <p>Log into your domain registrar or DNS provider (GoDaddy, Namecheap, Cloudflare, etc.) and update the following records:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Record Type</th>
+                        <th>Name/Host</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A Record</strong></td>
+                        <td>@ (or leave blank)</td>
+                        <td>WP Engine IP address</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CNAME</strong></td>
+                        <td>www</td>
+                        <td>WP Engine CNAME target</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>If you're using <a href="https://www.cloudflare.com/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Cloudflare</a> as your DNS provider, make sure the proxy status (orange cloud) is set correctly. WP Engine recommends setting the proxy to "DNS Only" (grey cloud) for the A record to avoid SSL conflicts, though you can use Cloudflare's proxy if you configure it properly.</p>
+
+            <h3>Reduce TTL Before Migration (Pro Tip)</h3>
+
+            <p>If you planned ahead, you should have reduced your DNS TTL (Time To Live) to 300 seconds (5 minutes) at least 24 hours before the migration. This makes DNS propagation much faster. If you didn't do this, don't worry — propagation will still happen, it just might take longer.</p>
+
+            <h2>Step 6: Final Cutover</h2>
+
+            <p>After updating your DNS, here's what happens next:</p>
+
+            <ol>
+                <li><strong>Add your domain in WP Engine:</strong> In your User Portal, go to your install → Domains → Add Domain. Enter your domain name (e.g., example.com and www.example.com). WP Engine will verify the DNS and provision SSL certificates automatically.</li>
+                <li><strong>Wait for DNS propagation:</strong> This typically takes <strong>1 to 48 hours</strong>, though most changes propagate within 1-4 hours. You can check propagation status using tools like <a href="https://dnschecker.org/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">DNS Checker</a>.</li>
+                <li><strong>Test your live domain:</strong> Once propagation is complete, visit your actual domain (not the WP Engine staging URL) and verify everything works.</li>
+                <li><strong>Force HTTPS:</strong> In your WP Engine portal, enable "Force HTTPS" to ensure all traffic uses SSL. This is critical for <a href="https://developers.google.com/search/docs/crawling-indexing/https-security" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">SEO and security</a>.</li>
+            </ol>
+
+            <h3>Don't Cancel Your Old Host Yet!</h3>
+
+            <p><strong>Keep your old hosting active for at least 7 days</strong> after the migration. This gives you a safety net in case anything goes wrong. After a week of smooth sailing on WP Engine, you can safely cancel your old hosting.</p>
+
+            <h2>Troubleshooting Common Migration Issues</h2>
+
+            <p>Even with a smooth migration, you might encounter a few bumps. Here are the most common issues I've encountered and how to fix them:</p>
+
+            <h3>Site Shows Mixed Content Warning</h3>
+
+            <p>If you see a warning that your site is "not fully secure" after migration, it's because some resources (images, scripts, stylesheets) are still loading over HTTP instead of HTTPS.</p>
+
+            <p><strong>Fix:</strong> Install and run the <a href="https://wordpress.org/plugins/better-search-replace/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Better Search Replace plugin</a> to replace all instances of <code>http://yourdomain.com</code> with <code>https://yourdomain.com</code> in the database. Alternatively, enable the "Force HTTPS" setting in your WP Engine portal.</p>
+
+            <h3>Pages Return 404 Errors</h3>
+
+            <p>If your homepage loads but internal pages show 404 errors, it's a permalink issue.</p>
+
+            <p><strong>Fix:</strong> Log into your WordPress admin dashboard, go to Settings → Permalinks, and simply click "Save Changes." This flushes the rewrite rules and fixes most 404 issues. If the problem persists, check that your <code>.htaccess</code> file was transferred correctly.</p>
+
+            <h3>Database Connection Error</h3>
+
+            <p>If you see "Error establishing a database connection," your wp-config.php file has incorrect database credentials.</p>
+
+            <p><strong>Fix:</strong> WP Engine manages database credentials automatically. If you used Duplicator, re-run the installer. If you used the WP Engine migration plugin, contact their support — they can regenerate the correct credentials.</p>
+
+            <h3>Email Stopped Working</h3>
+
+            <p>WP Engine does not host email services. If your email was handled by your previous host, you'll need to set up email separately.</p>
+
+            <p><strong>Fix:</strong> Update your <strong>MX records</strong> at your DNS provider to point to your email service. Common options include:</p>
+
+            <ul>
+                <li><strong>Google Workspace</strong> — Professional email with Gmail interface</li>
+                <li><strong>Microsoft 365</strong> — Outlook-based business email</li>
+                <li><strong>Zoho Mail</strong> — Free tier available for up to 5 users</li>
+                <li><strong>Your old host's email service</strong> — Some hosts let you keep email separately</li>
+            </ul>
+
+            <p><strong>Critical:</strong> Do not change your MX records during DNS propagation for your website. Wait until your site DNS is fully propagated, then update MX records separately to avoid email disruption.</p>
+
+            <h3>Slow Migration or Plugin Timeout</h3>
+
+            <p>For very large sites (over 5GB), the migration plugin may time out or stall.</p>
+
+            <p><strong>Fix:</strong> Try the Duplicator method instead, or request <strong>free professional migration</strong> from WP Engine's team. They have tools and server-level access that can handle large migrations without timeout issues.</p>
+
+            <h2>After Migration: Optimization Tips</h2>
+
+            <p>Now that your site is on WP Engine, take advantage of everything the platform offers:</p>
+
+            <ul>
+                <li><strong>Enable the built-in CDN</strong> — WP Engine includes a global CDN. Turn it on in your portal for faster load times worldwide.</li>
+                <li><strong>Set up staging environments</strong> — Use WP Engine's one-click staging to test changes before pushing them live.</li>
+                <li><strong>Configure daily backups</strong> — WP Engine runs automated daily backups, but you can also create on-demand backups before making major changes.</li>
+                <li><strong>Install the WP Engine plugin</strong> — This gives you access to caching controls, CDN purging, and other platform features directly from your WordPress dashboard.</li>
+                <li><strong>Monitor performance</strong> — Use the WP Engine portal to track your site's performance metrics and resource usage.</li>
+            </ul>
+
+            <p>For more optimization tips, check out <a href="https://wpbeginner.com/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WPBeginner's WordPress performance guides</a> and the <a href="https://wpengine.com/support/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WP Engine knowledge base</a>.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Migrate to WP Engine?</h3>
+                <p>Get started today and use code <strong>WPE20</strong> for 20% off your first payment!</p>
+                <a href="https://wpengine.com/" class="btn btn-primary" target="_blank">Get WP Engine (20% Off)</a>
+            </div>
+
+            <h2>Need Help With Your Migration?</h2>
+
+            <p>If you're not comfortable handling the migration yourself, or if your site is particularly complex (large e-commerce store, custom applications, multisite network), I offer professional WordPress migration services. I'll handle the entire process — backup, migration, testing, DNS updates, and post-migration optimization — so you can focus on running your business.</p>
+
+            <p><a href="contact.html" style="color: var(--accent);">Get in touch with me here</a> to discuss your migration needs.</p>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <div class="faq-question">Q: How long does it take to migrate a WordPress site to WP Engine?</div>
+                <div class="faq-answer">A: A typical WordPress migration to WP Engine takes 30 minutes to 2 hours depending on your site size. Small sites under 1GB can migrate in under 30 minutes using the WP Engine migration plugin. Larger sites or those with complex databases may take longer. DNS propagation after the migration adds an additional 1-48 hours.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: Will my website go down during the migration to WP Engine?</div>
+                <div class="faq-answer">A: No, your site stays live during the entire migration process. The WP Engine migration creates a copy of your site on their servers first. Your original site remains untouched until you update your DNS settings. Even during DNS propagation, visitors will see either the old or new site—never an error page.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: Can WP Engine migrate my site for free?</div>
+                <div class="faq-answer">A: Yes. WP Engine offers free automated migration through their migration plugin. For more complex migrations, WP Engine also provides complimentary professional migration support from their expert team. You can request this through your user portal after signing up.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: Do I need to cancel my old hosting after migrating to WP Engine?</div>
+                <div class="faq-answer">A: You should keep your old hosting active until you confirm the migration is fully working and DNS has propagated (usually 24-48 hours). After verifying everything works on WP Engine, you can safely cancel your old hosting. Don't cancel prematurely—you may need the old site as a fallback.</div>
+            </div>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> I may earn a commission if you purchase through my links at no extra cost to you. I only recommend products I've personally used and trust for my clients.
+            </div>
+
+            <div class="related-posts">
+                <h2>Related Posts</h2>
+                <ul>
+                    <li><a href="post-wp-engine-review.html">WP Engine Review: Is It Worth the Premium Price for WordPress Sites?</a></li>
+                    <li><a href="post-wp-engine-vs-siteground-vs-bluehost.html">WP Engine vs SiteGround vs Bluehost: Managed WordPress Hosting Compared</a></li>
+                    <li><a href="#">WP Engine Coupon Codes: How to Save 20% on Managed Hosting</a> (Coming Soon)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+</body>
+</html>
