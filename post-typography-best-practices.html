@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Typography Best Practices: A Complete Guide | Tochukwu Mesigo</title>
+    <meta name="description" content="Master website typography with these proven best practices. Learn about font pairing, sizing, readability, and how typography affects conversions.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-typography-best-practices.html">
+    <meta property="og:title" content="Website Typography Best Practices: A Complete Guide | Tochukwu Mesigo">
+    <meta property="og:description" content="Master website typography with these proven best practices. Learn about font pairing, sizing, readability, and how typography affects conversions.">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <meta property="og:image" content="img-typography-best-practices.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #14141c;
+            --accent: #00d4aa; --accent-glow: rgba(0, 212, 170, 0.4);
+            --accent-secondary: #7c3aed; --text-primary: #ffffff;
+            --text-secondary: #8a8a9e; --text-muted: #55556a;
+            --border: rgba(255, 255, 255, 0.08); --border-hover: rgba(0, 212, 170, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; font-size: 1.1rem; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 8px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-primary); transition: all 0.3s; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .blog-post { max-width: 900px; margin: 140px auto 80px; padding: 0 24px; }
+        .post-header { text-align: center; margin-bottom: 60px; }
+        .post-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+        .post-meta { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 32px; }
+        .post-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 600; margin: 48px 0 24px; color: var(--accent); }
+        .featured-image { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 48px; }
+        .featured-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+        .post-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 32px 0 16px; }
+        .post-content p { margin-bottom: 20px; color: var(--text-secondary); }
+        .post-content strong { color: var(--text-primary); }
+        .post-content table { width: 100%; border-collapse: collapse; margin: 24px 0; background: var(--bg-card); border-radius: 12px; overflow: hidden; }
+        .post-content th, .post-content td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        .post-content th { background: var(--bg-secondary); color: var(--accent); font-weight: 600; }
+        .cta-box { background: var(--bg-card); border: 1px solid var(--accent); border-radius: 16px; padding: 32px; margin: 40px 0; text-align: center; }
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 1rem; cursor: pointer; margin: 8px; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), #00b894); color: var(--bg-primary); box-shadow: 0 4px 24px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); }
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+        .faq { background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0; border: 1px solid var(--border); }
+        .faq-question { color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+        .disclosure { background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2); border-radius: 8px; padding: 16px; margin: 40px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .back-to-blogs { text-align: center; margin: 60px 0 40px; }
+        .tip-box { background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .tip-box strong { color: #7c3aed; }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; right: 0; background: rgba(10, 10, 15, 0.98); flex-direction: column; padding: 24px; gap: 24px; border-bottom: 1px solid var(--border); }
+            .nav-links.active { display: flex; }
+            .post-title { font-size: 2rem; }
+            .post-content h2 { font-size: 1.6rem; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Website Typography Best Practices: A Complete Guide",
+      "description": "Master website typography with these proven best practices. Learn about font pairing, sizing, readability, and how typography affects conversions.",
+      "author": { "@type": "Person", "name": "Tochukwu Mesigo", "url": "https://tochukwumesigo.com" },
+      "publisher": { "@type": "Person", "name": "Tochukwu Mesigo" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many fonts should a website use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Stick to 2-3 fonts maximum: one for headings, one for body text, and optionally one for accents. Too many fonts make your site look unprofessional." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best font size for website body text?",
+          "acceptedAnswer": { "@type": "Answer", "text": "16px is the minimum for body text, but 18-20px is becoming the modern standard for better readability on all devices." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are Google Fonts free to use commercially?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, all Google Fonts are open source and free for commercial use. You can use them on websites, in logos, and in print materials without any licensing fees." }
+        }
+      ]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZK9Z6WT91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TZK9Z6WT91');
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <div class="hamburger" id="hamburgerMenu"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">Website Typography Best Practices: A Complete Guide</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist</div>
+        </div>
+
+        <figure class="featured-image">
+            <img src="img-typography-best-practices.png" alt="Website Typography Best Practices Guide" loading="eager">
+        </figure>
+
+        <div class="post-content">
+            <p>Typography is the unsung hero of web design. While everyone notices a beautiful hero image, it's the typography that keeps visitors reading, guides them through your content, and ultimately drives conversions. I've seen websites with stunning visuals fail because their text was unreadable, and I've seen simple sites with excellent typography outperform much fancier competitors.</p>
+
+            <p>In this comprehensive guide, I'll share the typography principles I apply to every client website to ensure maximum readability and engagement.</p>
+
+            <h2>Why Typography Matters More Than You Think</h2>
+
+            <p>Studies show that <strong>95% of web design is typography</strong>. When someone visits your website, they're there to read your content. If that content is hard to read, they'll leave—no matter how good your product is.</p>
+
+            <p>Good typography:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Improves reading speed by up to 20%</li>
+                <li>Increases time spent on page</li>
+                <li>Enhances comprehension and retention</li>
+                <li>Builds trust and perceived professionalism</li>
+                <li>Directly impacts conversion rates</li>
+            </ul>
+
+            <h2>The Golden Rules of Web Typography</h2>
+
+            <h3>1. Limit Your Font Choices</h3>
+            <p>The biggest typography mistake I see? Using too many fonts. A website should have <strong>no more than 3 fonts</strong>:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><strong>Heading font</strong> - Usually a display font with personality</li>
+                <li><strong>Body font</strong> - A highly readable sans-serif or serif</li>
+                <li><strong>Accent font</strong> - Optional, for quotes or special elements</li>
+            </ul>
+
+            <h3>2. Size Matters: The 16px Minimum Rule</h3>
+            <p>For years, 16px was the standard for body text. Today, I recommend <strong>18-20px for body text</strong>. Screens are getting sharper and higher resolution, making smaller text harder to read. Your eyes will thank you.</p>
+
+            <div class="tip-box">
+                <strong>Pro Tip:</strong> Use relative units (rem or em) instead of pixels. This allows users to adjust text size in their browser settings, improving accessibility.
+            </div>
+
+            <h3>3. Line Height and Length</h3>
+            <p>Proper line height (leading) and line length (measure) are crucial for readability:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><strong>Line height:</strong> 1.5 to 1.7 for body text</li>
+                <li><strong>Line length:</strong> 50-75 characters per line (including spaces)</li>
+                <li><strong>Paragraph spacing:</strong> 1.5x the line height</li>
+            </ul>
+
+            <h3>4. Contrast Is King</h3>
+            <p>Your text needs to stand out from the background. The <a href="https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WCAG guidelines</a> require a contrast ratio of at least 4.5:1 for normal text. I prefer 7:1 or higher for maximum readability.</p>
+
+            <h2>Font Pairing: The Art of Combining Fonts</h2>
+
+            <p>Choosing fonts that work well together is both an art and a science. Here are my favorite combinations that work for almost any website:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Heading Font</th>
+                        <th>Body Font</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Space Grotesk</td>
+                        <td>Outfit</td>
+                        <td>Tech, SaaS, Modern Business</td>
+                    </tr>
+                    <tr>
+                        <td>Playfair Display</td>
+                        <td>Source Sans Pro</td>
+                        <td>Luxury, Fashion, Lifestyle</td>
+                    </tr>
+                    <tr>
+                        <td>Montserrat</td>
+                        <td>Open Sans</td>
+                        <td>Corporate, Professional Services</td>
+                    </tr>
+                    <tr>
+                        <td>Poppins</td>
+                        <td>Lato</td>
+                        <td>E-commerce, Startups</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Font Loading: Don't Let Typography Slow You Down</h2>
+
+            <p>Custom fonts can significantly impact page load times. Here's how I optimize font loading for client websites:</p>
+
+            <h3>Use font-display: swap</h3>
+            <p>This CSS property tells the browser to show text immediately with a fallback font while the custom font loads. Once loaded, it "swaps" to the custom font. No invisible text!</p>
+
+            <h3>Only Load What You Need</h3>
+            <p>Don't load every font weight if you only use two or three. Each font weight adds to the file size. I typically use:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>400 (Regular) for body text</li>
+                <li>500 or 600 (Medium/Semi-bold) for subheadings</li>
+                <li>700 (Bold) for emphasis</li>
+            </ul>
+
+            <h2>Mobile Typography Considerations</h2>
+
+            <p>With over 60% of web traffic coming from mobile devices, your typography must work on small screens:</p>
+
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Increase font sizes slightly for mobile (18-22px body)</li>
+                <li>Use slightly larger line height (1.6-1.8) for touch screens</li>
+                <li>Ensure headline text doesn't overflow or require horizontal scrolling</li>
+                <li>Test readability in bright sunlight conditions</li>
+            </ul>
+
+            <h2>Common Typography Mistakes I Fix Daily</h2>
+
+            <h3>Mistake #1: Justified Text on the Web</h3>
+            <p>Unlike print, justified text on websites creates uneven spacing and "rivers" of white space. Always use left-aligned text for body content.</p>
+
+            <h3>Mistake #2: All Caps Body Text</h3>
+            <p>ALL CAPS TEXT IS HARDER TO READ because we recognize word shapes, not just individual letters. Save all caps for short headings only.</p>
+
+            <h3>Mistake #3: Thin Font Weights for Body Text</h3>
+            <p>Font weights under 400 (light/thin) are nearly impossible to read on screens, especially on mobile. Stick to 400+ for body text.</p>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <div class="faq-question">Q: Should I use serif or sans-serif fonts?</div>
+                <div class="faq-answer">A: Sans-serif fonts (like Arial, Helvetica, Outfit) are generally better for screens and digital reading. Serif fonts (like Times New Roman, Georgia) can work well for long-form content or luxury branding.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: How do I choose fonts that match my brand?</div>
+                <div class="faq-answer">A: Consider your brand personality. Modern/tech brands work well with geometric sans-serifs. Traditional/professional brands suit classic serifs. Creative brands can experiment with unique display fonts.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: Can I use custom fonts not available on Google Fonts?</div>
+                <div class="faq-answer">A: Yes, but ensure you have the proper licensing. Self-host the font files and use @font-face in your CSS. Be aware this can impact loading times more than Google Fonts.</div>
+            </div>
+
+            <h2>Need Help Perfecting Your Website Typography?</h2>
+
+            <p>Typography can make or break your website's success. If you're unsure whether your current typography is working for or against you, I offer professional web design services including complete typography audits and implementations.</p>
+
+            <div class="cta-box">
+                <h3>Get Professional Typography That Converts</h3>
+                <p>Let me audit your website's typography and implement best practices that keep visitors reading and buying.</p>
+                <a href="contact.html" class="btn btn-primary">Book a Typography Audit</a>
+            </div>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> Some links in this article may be affiliate links. I only recommend tools and resources I personally use and trust.
+            </div>
+
+            <h2>Related Posts</h2>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><a href="post-color-scheme-website.html" style="color: var(--accent);">How to Choose the Right Color Scheme for Your Website</a></li>
+                <li><a href="post-mobile-first-design.html" style="color: var(--accent);">Mobile-First Design Principles Every Developer Should Know</a></li>
+                <li><a href="post-web-design-principles.html" style="color: var(--accent);">Essential Web Design Principles Every Designer Should Know</a></li>
+            </ul>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Accessibility: A Practical Guide | Tochukwu Mesigo</title>
+    <meta name="description" content="Learn website accessibility best practices. Make your website usable by everyone and improve SEO with accessible web design.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-website-accessibility.html">
+    <meta property="og:title" content="Website Accessibility: A Practical Guide | Tochukwu Mesigo">
+    <meta property="og:description" content="Learn website accessibility best practices. Make your website usable by everyone and improve SEO with accessible web design.">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <meta property="og:image" content="img-website-accessibility.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root { --bg-primary: #0a0a0f; --bg-secondary: #0f0f18; --bg-card: #14141c; --accent: #00d4aa; --accent-glow: rgba(0, 212, 170, 0.4); --accent-secondary: #ff6b6b; --text-primary: #ffffff; --text-secondary: #8a8a9e; --text-muted: #55556a; --border: rgba(255, 255, 255, 0.08); }
+        * { margin:0; padding:0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; font-size: 1.1rem; }
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 8px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-primary); transition: all 0.3s; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .blog-post { max-width: 900px; margin: 140px auto 80px; padding: 0 24px; }
+        .post-header { text-align: center; margin-bottom: 60px; }
+        .post-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+        .post-meta { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 32px; }
+        .post-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 600; margin: 48px 0 24px; color: var(--accent); }
+        .featured-image { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 48px; }
+        .featured-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+        .post-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; margin: 32px 0 16px; }
+        .post-content p { margin-bottom: 20px; color: var(--text-secondary); }
+        .post-content strong { color: var(--text-primary); }
+        .post-content table { width: 100%; border-collapse: collapse; margin: 24px 0; background: var(--bg-card); border-radius: 12px; overflow: hidden; }
+        .post-content th, .post-content td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        .post-content th { background: var(--bg-secondary); color: var(--accent); font-weight: 600; }
+        .cta-box { background: var(--bg-card); border: 1px solid var(--accent); border-radius: 16px; padding: 32px; margin: 40px 0; text-align: center; }
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 1rem; cursor: pointer; margin: 8px; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), #00b894); color: var(--bg-primary); box-shadow: 0 4px 24px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); }
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+        .faq { background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0; border: 1px solid var(--border); }
+        .faq-question { color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+        .disclosure { background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2); border-radius: 8px; padding: 16px; margin: 40px 0; font-size: 0.9rem; color: var(--text-secondary); }
+        .back-to-blogs { text-align: center; margin: 60px 0 40px; }
+        .check { color: var(--accent); }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; right: 0; background: rgba(10, 10, 15, 0.98); flex-direction: column; padding: 24px; gap: 24px; border-bottom: 1px solid var(--border); }
+            .nav-links.active { display: flex; }
+            .post-title { font-size: 2rem; }
+            .post-content h2 { font-size: 1.6rem; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Website Accessibility: A Practical Guide",
+      "description": "Learn website accessibility best practices. Make your website usable by everyone and improve SEO with accessible web design.",
+      "author": { "@type": "Person", "name": "Tochukwu Mesigo", "url": "https://tochukwumesigo.com" },
+      "publisher": { "@type": "Person", "name": "Tochukwu Mesigo" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is website accessibility?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Website accessibility means designing websites that people with disabilities can use. This includes visual, auditory, motor, and cognitive disabilities. It's both the right thing to do and often legally required." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does accessibility improve SEO?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes! Many accessibility practices (alt text, semantic HTML, proper headings) directly improve SEO. Google rewards accessible websites." }
+        }
+      ]
+    }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZK9Z6WT91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TZK9Z6WT91');
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <div class="hamburger" id="hamburgerMenu"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">Website Accessibility: A Practical Guide</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist</div>
+        </div>
+
+        <figure class="featured-image">
+            <img src="img-website-accessibility.png" alt="Website Accessibility Guide" loading="eager">
+        </figure>
+
+        <div class="post-content">
+            <p>Over <strong>1 billion people worldwide live with some form of disability</strong>. Can they use your website? Website accessibility isn't just about compliance—it's about making the web usable for everyone. Plus, accessible websites rank better in search engines. As a web developer, I ensure every site I build meets accessibility standards.</p>
+
+            <h2>What Is Web Accessibility (a11y)?</h2>
+
+            <p>Web accessibility means designing and developing websites that people with disabilities can perceive, understand, navigate, and interact with. This includes people with:</p>
+
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Visual impairments (blindness, low vision, color blindness)</li>
+                <li>Hearing impairments</li>
+                <li>Motor impairments (cannot use a mouse)</li>
+                <li>Cognitive disabilities</li>
+            </ul>
+
+            <h2>WCAG: The Gold Standard</h2>
+
+            <p>The Web Content Accessibility Guidelines (WCAG) provide the standard for accessibility. They have 3 levels:</p>
+
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><strong>A:</strong> Minimum level (basic accessibility)</li>
+                <li><strong>AA:</strong> Mid-range (legal requirement in many countries)</li>
+                <li><strong>AAA:</strong> Highest level (very difficult to achieve fully)</li>
+            </ul>
+
+            <p>Most businesses should aim for WCAG 2.1 AA compliance.</p>
+
+            <h2>Practical Accessibility Checklist</h2>
+
+            <h3>1. Alt Text for All Images</h3>
+            <p>Screen readers read alt text to visually impaired users:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Decorative images: alt="" (empty alt)</li>
+                <li> Informative images: Descriptive alt text</li>
+                <li>Functional images (buttons): Describe the action</li>
+            </ul>
+
+            <h3>2. Proper Heading Structure</h3>
+            <p>Use headings in order (H1 → H2 → H3). Never skip levels. Screen readers use headings for navigation.</p>
+
+            <h3>3. Color Contrast</h3>
+            <p>Ensure text has sufficient contrast against its background (4.5:1 for normal text, 3:1 for large text). Use <a href="https://webaim.org/resources/contrastchecker/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WebAIM's Contrast Checker</a>.</p>
+
+            <h3>4. Keyboard Navigation</h3>
+            <p>Test your site using only the keyboard (Tab, Shift+Tab, Enter, Space). All interactive elements should be reachable and usable.</p>
+
+            <h3>5. Focus Indicators</h3>
+            <p>Never remove outline from focused elements without providing a visible alternative. Users need to see where they are.</p>
+
+            <h3>6. Form Labels</h3>
+            <p>Every form input needs an associated &lt;label&gt; element. Don't use placeholder text as a label substitute.</p>
+
+            <h3>7. ARIA Labels (When Necessary)</h3>
+            <p>Use ARIA (Accessible Rich Internet Applications) attributes to provide extra context for screen readers when HTML semantics aren't enough.</p>
+
+            <h2>Accessibility Benefits Everyone</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Accessibility Feature</th>
+                        <th>Benefits Everyone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Good contrast</td>
+                        <td class="check">Easier to read in sunlight</td>
+                    </tr>
+                    <tr>
+                        <td>Keyboard navigation</td>
+                        <td class="check">Power users navigate faster</td>
+                    </tr>
+                    <tr>
+                        <td>Video captions</td>
+                        <td class="check">Watch in quiet environments</td>
+                    </tr>
+                    <tr>
+                        <td>Clear headings</td>
+                        <td class="check">Everyone scans content faster</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Testing Your Website's Accessibility</h2>
+
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><strong>Automated tools:</strong> <a href="https://wave.webaim.org/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">WAVE</a>, <a href="https://www.deque.com/axe/" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">axe</a>, Lighthouse accessibility audit</li>
+                <li><strong>Screen readers:</strong> NVDA (Windows), VoiceOver (Mac)</li>
+                <li><strong>Keyboard testing:</strong> Navigate your entire site without a mouse</li>
+                <li><strong>Color blindness simulators:</strong> See your site as color-blind users do</li>
+            </ul>
+
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <div class="faq-question">Q: Is accessibility legally required?</div>
+                <div class="faq-answer">A: In many countries, yes. The ADA (USA), AODA (Canada), and EN 301 549 (EU) all require digital accessibility. Lawsuits for inaccessible websites are increasing.</div>
+            </div>
+
+            <div class="faq">
+                <div class="faq-question">Q: How much does accessibility cost?</div>
+                <div class="faq-answer">A: Building accessibly from the start adds minimal cost. Retrofitting an inaccessible site can be expensive. Prevention is cheaper than cure.</div>
+            </div>
+
+            <h2>Need an Accessible Website?</h2>
+
+            <div class="cta-box">
+                <h3>Get an Accessible, Inclusive Website</h3>
+                <p>I build websites that meet WCAG standards and are usable by everyone.</p>
+                <a href="contact.html" class="btn btn-primary">Build an Accessible Site</a>
+            </div>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> I may earn a commission if you purchase through my links at no extra cost to you.
+            </div>
+
+            <h2>Related Posts</h2>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><a href="post-web-design-principles.html" style="color: var(--accent);">Essential Web Design Principles Every Designer Should Know</a></li>
+                <li><a href="post-seo-friendly-web-design.html" style="color: var(--accent);">SEO-Friendly Web Design: How to Build Sites That Rank</a></li>
+            </ul>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+
+    <script>
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
