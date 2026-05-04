@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Portfolio Site on Squarespace (Step-by-Step) | Tochukwu Mesigo</title>
+    <meta name="description" content="Step-by-step guide to creating a portfolio site on Squarespace. Perfect for creatives, photographers, and designers.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-how-to-create-portfolio-squarespace.html">
+    <meta property="og:title" content="How to Create a Portfolio Site on Squarespace (Step-by-Step) | Tochukwu Mesigo">
+    <meta property="og:description" content="Step-by-step guide to creating a portfolio site on Squarespace for creatives.">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <meta property="og:image" content="img-how-to-create-portfolio-squarespace.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #14141c;
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --accent-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a9e;
+            --text-muted: #55556a;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 212, 170, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center; height: 80px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .blog-post { max-width: 900px; margin: 140px auto 80px; padding: 0 24px; }
+
+        .post-header { text-align: center; margin-bottom: 60px; }
+
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700; line-height: 1.2; margin-bottom: 24px;
+        }
+
+        .post-meta { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 32px; }
+
+        .featured-image { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 48px; }
+
+        .featured-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 600;
+            margin: 48px 0 24px; color: var(--accent);
+        }
+
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600;
+            margin: 32px 0 16px;
+        }
+
+        .post-content p { margin-bottom: 20px; color: var(--text-secondary); }
+
+        .post-content ul { margin: 16px 0 16px 40px; color: var(--text-secondary); }
+
+        .post-content li { margin-bottom: 8px; }
+
+        .cta-box {
+            background: var(--bg-card); border: 1px solid var(--accent);
+            border-radius: 16px; padding: 32px; margin: 40px 0; text-align: center;
+        }
+
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px;
+            border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s;
+            font-size: 1rem; cursor: pointer; margin: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #00b894);
+            color: var(--bg-primary); box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); }
+
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-primary); }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        .disclosure {
+            background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px; padding: 16px; margin: 40px 0; font-size: 0.9rem; color: var(--text-secondary);
+        }
+
+        .related-posts { margin: 40px 0; }
+
+        .related-posts ul { margin: 16px 0 16px 40px; color: var(--text-secondary); }
+
+        .related-posts a { color: var(--accent); text-decoration: none; }
+
+        .back-to-blogs { text-align: center; margin: 60px 0 40px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .post-title { font-size: 2rem; }
+            .post-content h2 { font-size: 1.6rem; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Create a Portfolio Site on Squarespace (Step-by-Step)",
+      "description": "Step-by-step guide to creating a portfolio site on Squarespace for creatives.",
+      "author": { "@type": "Person", "name": "Tochukwu Mesigo", "url": "https://tochukwumesigo.com" },
+      "publisher": { "@type": "Person", "name": "Tochukwu Mesigo" }
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZK9Z6WT91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TZK9Z6WT91');
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">How to Create a Portfolio Site on Squarespace (Step-by-Step)</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist</div>
+        </div>
+
+        <figure class="featured-image">
+            <img src="img-how-to-create-portfolio-squarespace.png" alt="How to Create a Portfolio Site on Squarespace" loading="eager">
+        </figure>
+
+        <div class="post-content">
+            <p>A portfolio site is essential for creative professionals. Squarespace makes it easy to build a stunning portfolio without coding. Follow this step-by-step guide to launch your portfolio in under an hour.</p>
+
+            <h2>Step 1: Choose the Right Template</h2>
+            <p>Start by browsing Squarespace's portfolio templates. Popular choices include:</p>
+            <ul>
+                <li><strong>For photographers:</strong> "Marta" or "Darwin"</li>
+                <li><strong>For designers:</strong> "Bailard" or "Paco"</li>
+                <li><strong>For agencies:</strong> "Bedford" or "Montauk"</li>
+            </ul>
+
+            <h2>Step 2: Set Up Your Site Structure</h2>
+            <p>Every portfolio needs these core pages:</p>
+            <ul>
+                <li><strong>Home:</strong> Hero section with your best work</li>
+                <li><strong>Portfolio:</strong> Gallery of your projects</li>
+                <li><strong>About:</strong> Your story and expertise</li>
+                <li><strong>Contact:</strong> Easy way for clients to reach you</li>
+            </ul>
+
+            <h2>Step 3: Upload Your Work</h2>
+            <p>Use Squarespace's gallery blocks to showcase your projects. Optimize images to 2000px width for crisp display. Add project descriptions, client names, and your role.</p>
+
+            <h3>Pro Tip: Use Lightbox</h3>
+            <p>Enable lightbox mode so visitors can view your work full-screen without leaving the page.</p>
+
+            <h2>Step 4: Customize Your Branding</h2>
+            <p>Add your logo, choose brand colors, and select fonts that match your style. Squarespace's style editor makes this easy with real-time previews.</p>
+
+            <h2>Step 5: Optimize for SEO</h2>
+            <p>Add meta descriptions, alt text to images, and clean URLs. Squarespace has built-in SEO tools to help you rank.</p>
+
+            <h2>Step 6: Connect Your Domain</h2>
+            <p>Either buy a domain through Squarespace or connect an existing one. Make sure to set up SSL (included free with Squarespace).</p>
+
+            <div class="cta-box">
+                <h3>Ready to Build Your Portfolio?</h3>
+                <a href="https://www.squarespace.com/" class="btn btn-primary" target="_blank">Get Squarespace Here</a>
+            </div>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> I may earn a commission if you purchase through my link at no extra cost to you.
+            </div>
+
+            <h2>Related Posts</h2>
+            <div class="related-posts">
+                <ul>
+                    <li><a href="post-squarespace-review.html">Squarespace Review: Is It the Best for Creative Professionals?</a></li>
+                    <li><a href="post-squarespace-templates.html">Squarespace Templates: 10 Best Designs for Small Businesses</a></li>
+                    <li><a href="post-squarespace-for-small-businesses.html">Squarespace for Small Businesses: Why Design Matters for Conversions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+</body>
+</html>

@@ -186,6 +186,18 @@
             align-items: center;
             justify-content: center;
             font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.05);
         }
 
         .blog-card-content {
@@ -251,21 +263,6 @@
 
         .read-more:hover {
             gap: 8px;
-        }
-
-        .coming-soon {
-            opacity: 0.6;
-        }
-
-        .coming-soon-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: var(--accent-secondary);
-            margin-bottom: 16px;
         }
 
         @media (max-width: 768px) {
@@ -337,10 +334,10 @@
         </div>
 
         <div class="blog-grid">
-            <!-- Published Post -->
+            <!-- WP Engine Posts (1-5) -->
             <div class="blog-card">
                 <div class="blog-card-image">
-                    🚀
+                    <img src="img-wp-engine-review.png" alt="WP Engine Review" loading="lazy">
                 </div>
                 <div class="blog-card-content">
                     <span class="blog-category">Hosting Review</span>
@@ -353,10 +350,9 @@
                 </div>
             </div>
 
-            <!-- Coming Soon Posts (from the 100 list) -->
             <div class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-                    ☁️
+                <div class="blog-card-image">
+                    <img src="img-wp-engine-vs-siteground-vs-bluehost.png" alt="Hosting comparison" loading="lazy">
                 </div>
                 <div class="blog-card-content">
                     <span class="blog-category">Hosting Comparison</span>
@@ -370,8 +366,8 @@
             </div>
 
             <div class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
-                    🔄
+                <div class="blog-card-image">
+                    <img src="img-migrate-wp-engine.png" alt="WordPress migration guide" loading="lazy">
                 </div>
                 <div class="blog-card-content">
                     <span class="blog-category">Tutorial</span>
@@ -385,8 +381,8 @@
             </div>
 
             <div class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
-                    📈
+                <div class="blog-card-image">
+                    <img src="img-wp-engine-high-traffic.png" alt="High-traffic WordPress sites" loading="lazy">
                 </div>
                 <div class="blog-card-content">
                     <span class="blog-category">Performance</span>
@@ -400,8 +396,8 @@
             </div>
 
             <div class="blog-card">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #fa709a, #fee140);">
-                    💰
+                <div class="blog-card-image">
+                    <img src="img-wp-engine-coupon-codes.png" alt="WP Engine coupon codes" loading="lazy">
                 </div>
                 <div class="blog-card-content">
                     <span class="blog-category">Deals</span>
@@ -414,16 +410,686 @@
                 </div>
             </div>
 
-            <div class="blog-card coming-soon">
-                <div class="blog-card-image" style="background: linear-gradient(135deg, #30cfd0, #330867);">
-                    🔍
+            <!-- Cloudways Posts (6-10) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-cloudways-review.png" alt="Cloudways Review" loading="lazy">
                 </div>
                 <div class="blog-card-content">
-                    <span class="coming-soon-badge">Coming Soon</span>
-                    <h3><a href="#">Semrush Review: Is It the Best SEO Tool for Agencies?</a></h3>
-                    <p>How Semrush can transform your SEO strategy and help recover lost rankings fast.</p>
+                    <span class="blog-category">Cloud Hosting</span>
+                    <h3><a href="post-cloudways-review.html">Cloudways Review: Is It the Best Cloud Hosting for Developers?</a></h3>
+                    <p>Honest Cloudways review from a developer's perspective. Is managed cloud hosting worth it for developers?</p>
                     <div class="blog-meta">
-                        <span>Coming Soon</span>
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-cloudways-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-cloudways-vs-siteground.png" alt="Cloudways vs SiteGround" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Comparison</span>
+                    <h3><a href="post-cloudways-vs-siteground.html">Cloudways vs SiteGround: Which Cloud Hosting Is Right for You?</a></h3>
+                    <p>Detailed comparison of Cloudways and SiteGround cloud hosting. Speed, pricing, and support compared.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-cloudways-vs-siteground.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-setup-wordpress-cloudways.png" alt="WordPress on Cloudways" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-setup-wordpress-cloudways.html">How to Set Up a WordPress Site on Cloudways in 10 Minutes</a></h3>
+                    <p>Step-by-step guide to launching WordPress on Cloudways with SSL and domain mapping.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-setup-wordpress-cloudways.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-cloudways-promo-codes.png" alt="Cloudways promo codes" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Deals</span>
+                    <h3><a href="post-cloudways-promo-codes.html">Cloudways Promo Codes: Get 30% Off Your First 3 Months</a></h3>
+                    <p>Working Cloudways promo codes for 2026. Get 30% off your first 3 months with code BIG3D.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-cloudways-promo-codes.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-why-developers-love-cloudways.png" alt="Why developers love Cloudways" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Developer Tools</span>
+                    <h3><a href="post-why-developers-love-cloudways.html">Why Developers Love Cloudways: Scalable Hosting for Growing Sites</a></h3>
+                    <p>Staging, cloning, and developer tools that make Cloudways the go-to choice for agencies.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-why-developers-love-cloudways.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SiteGround Posts (11-15) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-siteground-review.png" alt="SiteGround Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Review</span>
+                    <h3><a href="post-siteground-review.html">SiteGround Review: Why It's the Top Choice for WordPress Beginners</a></h3>
+                    <p>Honest SiteGround review from a web developer. Why it's the top choice for WordPress beginners.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-siteground-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-siteground-vs-bluehost.png" alt="SiteGround vs Bluehost" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Comparison</span>
+                    <h3><a href="post-siteground-vs-bluehost.html">SiteGround vs Bluehost: Which Hosting Is Better for Small Businesses?</a></h3>
+                    <p>Detailed comparison of SiteGround vs Bluehost for small businesses. Speed, pricing, and features compared.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-siteground-vs-bluehost.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-speed-up-siteground.png" alt="Speed up WordPress SiteGround" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-speed-up-wordpress-siteground.html">How to Speed Up Your WordPress Site with SiteGround's Optimizer</a></h3>
+                    <p>Learn how to speed up WordPress using SiteGround's Speed Optimizer plugin with this step-by-step guide.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-speed-up-wordpress-siteground.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-siteground-coupon.png" alt="SiteGround coupon" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Deals</span>
+                    <h3><a href="post-siteground-coupon.html">SiteGround Coupon: Save $70 on Your First Hosting Plan</a></h3>
+                    <p>SiteGround coupon codes for 2026. Save up to $70 on your first hosting plan with our exclusive discount.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-siteground-coupon.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-siteground-security.png" alt="SiteGround security features" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Security</span>
+                    <h3><a href="post-siteground-security-features.html">SiteGround's Security Features: Why Your Site Is Safer Here</a></h3>
+                    <p>Learn about SiteGround's security features including WAF, AI anti-bot, and daily backups.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-siteground-security-features.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bluehost Posts (16-20) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-bluehost-review.png" alt="Bluehost Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Review</span>
+                    <h3><a href="post-bluehost-review.html">Bluehost Review: Is It Still the Best Hosting for Beginners?</a></h3>
+                    <p>Honest Bluehost review from a web developer. Is it still the best hosting for beginners in 2026?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-bluehost-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-bluehost-vs-hostinger.png" alt="Bluehost vs Hostinger" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Comparison</span>
+                    <h3><a href="post-bluehost-vs-hostinger.html">Bluehost vs Hostinger: Which Budget Hosting Wins?</a></h3>
+                    <p>Detailed comparison of Bluehost vs Hostinger for budget WordPress hosting. Speed and pricing compared.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-bluehost-vs-hostinger.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-install-wordpress-bluehost.png" alt="Install WordPress Bluehost" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-install-wordpress-bluehost.html">How to Install WordPress on Bluehost in Under 5 Minutes</a></h3>
+                    <p>Step-by-step guide to installing WordPress on Bluehost. One-click installation for beginners.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-install-wordpress-bluehost.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-bluehost-coupon-codes.png" alt="Bluehost coupon codes" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Deals</span>
+                    <h3><a href="post-bluehost-coupon-codes.html">Bluehost Coupon Codes: Get Hosting for $2.95/Month</a></h3>
+                    <p>Working Bluehost coupon codes for 2026. Get hosting for $2.95/month with our exclusive discount link.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-bluehost-coupon-codes.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-bluehost-website-builder.png" alt="Bluehost Website Builder" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Website Builder</span>
+                    <h3><a href="post-bluehost-website-builder.html">Bluehost's Website Builder: Is It Good for Non-Techies?</a></h3>
+                    <p>Review of Bluehost's website builder. Is it good for non-techies who want to build a website without coding?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-bluehost-website-builder.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hostinger Posts (21-25) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-hostinger-review.png" alt="Hostinger Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Review</span>
+                    <h3><a href="post-hostinger-review.html">Hostinger Review: The Best Budget Hosting for WordPress Sites?</a></h3>
+                    <p>Honest Hostinger review from a web developer. Is it the best budget hosting for WordPress sites?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-hostinger-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-hostinger-vs-bluehost-vs-siteground.png" alt="Hostinger vs Bluehost vs SiteGround" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Hosting Comparison</span>
+                    <h3><a href="post-hostinger-vs-bluehost-vs-siteground.html">Hostinger vs Bluehost vs SiteGround: Budget Hosting Compared</a></h3>
+                    <p>Compare the top 3 budget hosting providers. Find out which offers the best value for your WordPress site.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-hostinger-vs-bluehost-vs-siteground.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-migrate-to-hostinger.png" alt="Migrate to Hostinger" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-migrate-to-hostinger.html">How to Migrate Your Site to Hostinger for Free</a></h3>
+                    <p>Step-by-step guide to migrating your WordPress site to Hostinger. Includes free migration service details.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-migrate-to-hostinger.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-hostinger-coupon.png" alt="Hostinger Coupon" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Deals</span>
+                    <h3><a href="post-hostinger-coupon.html">Hostinger Coupon: Save 80% on Web Hosting Plans</a></h3>
+                    <p>Hostinger coupon codes for 2026. Save 80% on web hosting plans with our exclusive discount link.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-hostinger-coupon.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-hostinger-performance.png" alt="Hostinger Performance" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Performance</span>
+                    <h3><a href="post-hostinger-performance.html">Hostinger's Performance: Is It Fast Enough for E-commerce Sites?</a></h3>
+                    <p>Speed tests and performance analysis. Is Hostinger fast enough for your e-commerce store?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-hostinger-performance.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopify Posts (26-30) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-shopify-review.png" alt="Shopify Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">E-commerce Platform</span>
+                    <h3><a href="post-shopify-review.html">Shopify Review: Is It the Best E-commerce Platform for Small Businesses?</a></h3>
+                    <p>Honest Shopify review from a developer. Is it the best e-commerce platform for small businesses?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-shopify-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-shopify-vs-wix-vs-squarespace.png" alt="Shopify vs Wix vs Squarespace" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Platform Comparison</span>
+                    <h3><a href="post-shopify-vs-wix-vs-squarespace.html">Shopify vs Wix vs Squarespace: E-commerce Platforms Compared</a></h3>
+                    <p>Compare the top 3 e-commerce platforms. Which is best for your online store?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-shopify-vs-wix-vs-squarespace.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-setup-shopify-store.png" alt="Setup Shopify Store" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-setup-shopify-store.html">How to Set Up a Shopify Store: Step-by-Step Guide for Beginners</a></h3>
+                    <p>Complete guide to setting up your Shopify store from scratch. No coding required.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-setup-shopify-store.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-shopify-vs-woocommerce.png" alt="Shopify vs WooCommerce" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Platform Comparison</span>
+                    <h3><a href="post-shopify-vs-woocommerce.html">Shopify vs WooCommerce: Which Is Better for Your Online Store?</a></h3>
+                    <p>Detailed comparison of Shopify and WooCommerce. Which platform fits your business model?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-shopify-vs-woocommerce.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-shopify-ecommerce-recovery.png" alt="Shopify E-commerce Recovery" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">E-commerce Recovery</span>
+                    <h3><a href="post-shopify-for-ecommerce-recovery.html">Shopify for E-commerce Recovery: How to Rebuild Your Online Store</a></h3>
+                    <p>Learn how to rebuild your online store with Shopify after a site crash or hack.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-shopify-for-ecommerce-recovery.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wix Posts (31-35) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-wix-review.png" alt="Wix Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Website Builder</span>
+                    <h3><a href="post-wix-review.html">Wix Review: Is It the Best Website Builder for Small Businesses?</a></h3>
+                    <p>Honest Wix review from a web developer. Is it the best website builder for small businesses?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-wix-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-wix-vs-wordpress.png" alt="Wix vs WordPress" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Platform Comparison</span>
+                    <h3><a href="post-wix-vs-wordpress.html">Wix vs WordPress: Which Is Better for Your First Website?</a></h3>
+                    <p>Compare Wix and WordPress to decide which platform is best for your first website.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-wix-vs-wordpress.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-build-website-wix.png" alt="Build Website on Wix" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-build-website-wix.html">How to Build a Website on Wix in Under an Hour (No Coding Needed)</a></h3>
+                    <p>Step-by-step guide to building a professional website on Wix in under an hour.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-build-website-wix.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-wix-vs-squarespace.png" alt="Wix vs Squarespace" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Platform Comparison</span>
+                    <h3><a href="post-wix-vs-squarespace.html">Wix vs Squarespace: Which Builder Has Better Designs?</a></h3>
+                    <p>Design comparison between Wix and Squarespace. Which has better templates and design flexibility?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-wix-vs-squarespace.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-wix-for-web-development.png" alt="Wix for Web Development" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Web Development</span>
+                    <h3><a href="post-wix-for-web-development.html">Wix for Web Development: When to Use a Builder vs Custom Code</a></h3>
+                    <p>Learn when to use Wix vs custom code for web development projects.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-wix-for-web-development.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Squarespace Posts (36-40) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-squarespace-review.png" alt="Squarespace Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Website Builder</span>
+                    <h3><a href="post-squarespace-review.html">Squarespace Review: Is It the Best for Creative Professionals?</a></h3>
+                    <p>Honest Squarespace review from a web developer. Is it the best platform for creative professionals?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-squarespace-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-squarespace-vs-wix-vs-wordpress.png" alt="Squarespace vs Wix vs WordPress" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Platform Comparison</span>
+                    <h3><a href="post-squarespace-vs-wix-vs-wordpress.html">Squarespace vs Wix vs WordPress: Design-Focused Builders Compared</a></h3>
+                    <p>Compare Squarespace, Wix, and WordPress for design-focused websites. Which is best for creatives?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-squarespace-vs-wix-vs-wordpress.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-how-to-create-portfolio-squarespace.png" alt="Create Portfolio on Squarespace" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-create-portfolio-squarespace.html">How to Create a Portfolio Site on Squarespace (Step-by-Step)</a></h3>
+                    <p>Step-by-step guide to creating a stunning portfolio site on Squarespace for creatives.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-create-portfolio-squarespace.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-squarespace-templates.png" alt="Squarespace Templates" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Design</span>
+                    <h3><a href="post-squarespace-templates.html">Squarespace Templates: 10 Best Designs for Small Businesses</a></h3>
+                    <p>Discover the 10 best Squarespace templates for small businesses. Professional designs that convert.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-squarespace-templates.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-squarespace-for-small-businesses.png" alt="Squarespace for Small Businesses" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Business Growth</span>
+                    <h3><a href="post-squarespace-for-small-businesses.html">Squarespace for Small Businesses: Why Design Matters for Conversions</a></h3>
+                    <p>Learn why design matters for small business conversions and how Squarespace helps you create high-converting websites.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-squarespace-for-small-businesses.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ThemeForest Posts (41-45) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-themeforest-review.png" alt="ThemeForest Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Marketplace Review</span>
+                    <h3><a href="post-themeforest-review.html">ThemeForest Review: Is It the Best Place to Buy WordPress Themes?</a></h3>
+                    <p>Honest ThemeForest review from a web developer. Is it the best place to buy WordPress themes?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-themeforest-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-top-10-best-selling-wordpress-themes-themeforest.png" alt="Top 10 Best-Selling WordPress Themes" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Themes Roundup</span>
+                    <h3><a href="post-top-10-best-selling-wordpress-themes-themeforest.html">Top 10 Best-Selling WordPress Themes on ThemeForest</a></h3>
+                    <p>Discover the top 10 best-selling WordPress themes on ThemeForest. Proven themes that convert and perform well.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-top-10-best-selling-wordpress-themes-themeforest.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-how-to-choose-theme-themeforest.png" alt="Choose Theme on ThemeForest" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-choose-theme-themeforest.html">How to Choose the Right Theme for Your WordPress Site on ThemeForest</a></h3>
+                    <p>Learn how to choose the perfect WordPress theme on ThemeForest. Avoid common mistakes and pick a theme that converts.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-choose-theme-themeforest.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-themeforest-vs-templatemonster.png" alt="ThemeForest vs TemplateMonster" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Marketplace Comparison</span>
+                    <h3><a href="post-themeforest-vs-templatemonster.html">ThemeForest vs TemplateMonster: Which Marketplace Is Better?</a></h3>
+                    <p>Compare ThemeForest and TemplateMonster. Which marketplace has better themes, pricing, and support?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-themeforest-vs-templatemonster.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-themeforest-website-redesign.png" alt="ThemeForest Website Redesign" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Web Development</span>
+                    <h3><a href="post-themeforest-website-redesign.html">ThemeForest Themes for Website Redesign: How to Pick the Perfect Template</a></h3>
+                    <p>Learn how to pick the perfect ThemeForest template for your website redesign project. Step-by-step guide for web developers.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-themeforest-website-redesign.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TemplateMonster Posts (46-50) -->
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-templatemonster-review.png" alt="TemplateMonster Review" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Marketplace Review</span>
+                    <h3><a href="post-templatemonster-review.html">TemplateMonster Review: Is It Worth Buying Templates Here?</a></h3>
+                    <p>Honest TemplateMonster review from a web developer. Is it worth buying templates here? Pricing, quality, and real experience.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-templatemonster-review.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-top-5-templatemonster-themes-ecommerce.png" alt="Top 5 TemplateMonster Themes" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Themes Roundup</span>
+                    <h3><a href="post-top-5-templatemonster-themes-ecommerce.html">Top 5 Best TemplateMonster Themes for E-commerce Sites</a></h3>
+                    <p>Discover the top 5 best TemplateMonster themes for e-commerce sites. Boost sales with professional designs.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-top-5-templatemonster-themes-ecommerce.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-how-to-customize-templatemonster-template.png" alt="Customize TemplateMonster Template" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Tutorial</span>
+                    <h3><a href="post-how-to-customize-templatemonster-template.html">How to Customize a TemplateMonster Template for Your Brand</a></h3>
+                    <p>Step-by-step guide to customizing TemplateMonster templates. Make your template match your brand perfectly.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-how-to-customize-templatemonster-template.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-templatemonster-vs-themeforest.png" alt="TemplateMonster vs ThemeForest" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Marketplace Comparison</span>
+                    <h3><a href="post-templatemonster-vs-themeforest.html">TemplateMonster vs ThemeForest: Which Has Better Support?</a></h3>
+                    <p>Compare TemplateMonster and ThemeForest support. Which marketplace offers better customer service?</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-templatemonster-vs-themeforest.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="img-templatemonster-for-web-development.png" alt="TemplateMonster for Web Development" loading="lazy">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Web Development</span>
+                    <h3><a href="post-templatemonster-for-web-development.html">TemplateMonster for Web Development: Speed Up Your Workflow</a></h3>
+                    <p>Learn how TemplateMonster templates can speed up your web development workflow. Save time and deliver projects faster.</p>
+                    <div class="blog-meta">
+                        <span>By Tochukwu Mesigo</span>
+                        <a href="post-templatemonster-for-web-development.html" class="read-more">Read More →</a>
                     </div>
                 </div>
             </div>

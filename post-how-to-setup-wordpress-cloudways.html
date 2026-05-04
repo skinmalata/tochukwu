@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up a WordPress Site on Cloudways in 10 Minutes | Tochukwu Mesigo</title>
+    <meta name="description" content="Step-by-step guide to setting up WordPress on Cloudways. From server launch to SSL and domain mapping - complete walkthrough for beginners.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-how-to-setup-wordpress-cloudways.html">
+    <meta property="og:title" content="How to Set Up a WordPress Site on Cloudways in 10 Minutes | Tochukwu Mesigo">
+    <meta property="og:description" content="Step-by-step guide to setting up WordPress on Cloudways. Complete walkthrough for beginners.">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <meta property="og:image" content="img-setup-wordpress-cloudways.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #14141c;
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --accent-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a9e;
+            --text-muted: #55556a;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 212, 170, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center; height: 80px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .blog-post { max-width: 900px; margin: 140px auto 80px; padding: 0 24px; }
+
+        .post-header { text-align: center; margin-bottom: 60px; }
+
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700; line-height: 1.2; margin-bottom: 24px;
+        }
+
+        .post-meta { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 32px; }
+
+        .featured-image { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 48px; }
+
+        .featured-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 600;
+            margin: 48px 0 24px; color: var(--accent);
+        }
+
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600;
+            margin: 32px 0 16px;
+        }
+
+        .post-content p { margin-bottom: 20px; color: var(--text-secondary); }
+
+        .post-content ol { margin: 16px 0 16px 40px; color: var(--text-secondary); }
+
+        .post-content li { margin-bottom: 12px; }
+
+        .step-box {
+            background: var(--bg-card); border: 1px solid var(--accent);
+            border-radius: 12px; padding: 24px; margin: 24px 0; position: relative;
+        }
+
+        .step-number {
+            background: var(--accent); color: var(--bg-primary); width: 36px; height: 36px;
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; margin-right: 12px;
+        }
+
+        .cta-box {
+            background: var(--bg-card); border: 1px solid var(--accent);
+            border-radius: 16px; padding: 32px; margin: 40px 0; text-align: center;
+        }
+
+        .cta-box h3 { color: var(--accent); margin-top: 0; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px;
+            border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s;
+            font-size: 1rem; cursor: pointer; margin: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #00b894);
+            color: var(--bg-primary); box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); }
+
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-primary); }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        .faq {
+            background: var(--bg-card); padding: 24px; border-radius: 12px;
+            margin: 24px 0; border: 1px solid var(--border);
+        }
+
+        .faq-question { color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+
+        .disclosure {
+            background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px; padding: 16px; margin: 40px 0; font-size: 0.9rem; color: var(--text-secondary);
+        }
+
+        .related-posts { margin: 40px 0; }
+
+        .related-posts ul { margin: 16px 0 16px 40px; color: var(--text-secondary); }
+
+        .related-posts a { color: var(--accent); text-decoration: none; }
+
+        .back-to-blogs { text-align: center; margin: 60px 0 40px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .post-title { font-size: 2rem; }
+            .post-content h2 { font-size: 1.6rem; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Set Up a WordPress Site on Cloudways in 10 Minutes",
+      "description": "Step-by-step guide to setting up WordPress on Cloudways. From server launch to SSL and domain mapping.",
+      "author": { "@type": "Person", "name": "Tochukwu Mesigo", "url": "https://tochukwumesigo.com" },
+      "publisher": { "@type": "Person", "name": "Tochukwu Mesigo" }
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZK9Z6WT91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TZK9Z6WT91');
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">How to Set Up a WordPress Site on Cloudways in 10 Minutes</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist</div>
+        </div>
+
+        <figure class="featured-image">
+            <img src="img-setup-wordpress-cloudways.png" alt="Setting up WordPress on Cloudways" loading="eager">
+        </figure>
+
+        <div class="post-content">
+            <p>Setting up WordPress on Cloudways is surprisingly straightforward. I've launched dozens of servers for clients, and once you know the steps, you can have a fully functional WordPress site running in under 10 minutes.</p>
+
+            <p>This guide walks you through every step—from creating your Cloudways account to launching your first WordPress site with SSL and domain mapping.</p>
+
+            <h2>What You'll Need</h2>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>A Cloudways account (start with their <a href="https://www.cloudways.com/" style="color: var(--accent);" target="_blank">free trial</a>)</li>
+                <li>A domain name (I recommend <a href="https://www.namecheap.com/" style="color: var(--accent);" target="_blank">Namecheap</a>)</li>
+                <li>10 minutes of your time</li>
+            </ul>
+
+            <h2>Step 1: Create Your Cloudways Account</h2>
+            <div class="step-box">
+                <p><span class="step-number">1</span><strong>Sign up at Cloudways.com</strong></p>
+                <p>Use the <a href="https://www.cloudways.com/" style="color: var(--accent);" target="_blank">free trial</a> — no credit card required for the first 3 days. Enter your email, name, and choose a password.</p>
+            </div>
+
+            <h2>Step 2: Launch a Server</h2>
+            <div class="step-box">
+                <p><span class="step-number">2</span><strong>Choose your cloud provider</strong></p>
+                <p>I recommend <strong>DigitalOcean</strong> for most users — best balance of performance and price. Select:</p>
+                <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                    <li><strong>Server Size:</strong> 1GB RAM / 25GB storage (good for 1-3 sites)</li>
+                    <li><strong>Location:</strong> Choose the data center closest to your target audience</li>
+                    <li><strong>Server Name:</strong> Give it a recognizable name</li>
+                </ul>
+                <p>Click "Launch Now" — server setup takes 5-7 minutes.</p>
+            </div>
+
+            <h2>Step 3: Deploy WordPress</h2>
+            <div class="step-box">
+                <p><span class="step-number">3</span><strong>Create your WordPress application</strong></p>
+                <p>Once your server is ready:</p>
+                <ol style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                    <li>Click on your server name</li>
+                    <li>Go to "Applications" tab</li>
+                    <li>Click "Add Application"</li>
+                    <li>Select "WordPress" (or "WooCommerce" if building a store)</li>
+                    <li>Choose your WordPress version and enter a name</li>
+                    <li>Click "Add Application"</li>
+                </ol>
+                <p>Your WordPress site will be ready in 2-3 minutes.</p>
+            </div>
+
+            <h2>Step 4: Access Your WordPress Admin</h2>
+            <div class="step-box">
+                <p><span class="step-number">4</span><strong>Get your login credentials</strong></p>
+                <p>In the Application Management screen:</p>
+                <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                    <li>Click "Access Details"</li>
+                    <li>Find your admin URL, username, and password</li>
+                    <li>Click "Launch WordPress" to log in</li>
+                </ul>
+                <p>Pro tip: Change your password immediately after first login!</p>
+            </div>
+
+            <h2>Step 5: Map Your Domain</h2>
+            <div class="step-box">
+                <p><span class="step-number">5</span><strong>Point your domain to Cloudways</strong></p>
+                <p>In Cloudways Application Management:</p>
+                <ol style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                    <li>Go to "Domain Management"</li>
+                    <li>Enter your domain name (e.g., yoursite.com)</li>
+                    <li>Copy the provided IP address</li>
+                    <li>In your domain registrar (Namecheap, GoDaddy, etc.), update your A record to this IP</li>
+                </ol>
+                <p>DNS propagation takes 1-48 hours, but usually happens within a few hours.</p>
+            </div>
+
+            <h2>Step 6: Install SSL Certificate</h2>
+            <div class="step-box">
+                <p><span class="step-number">6</span><strong>Enable free SSL</strong></p>
+                <p>Cloudways provides free Let's Encrypt SSL:</p>
+                <ol style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                    <li>Go to "SSL Certificate" in Application Management</li>
+                    <li>Select "Let's Encrypt"</li>
+                    <li>Enter your email and domain</li>
+                    <li>Click "Install Certificate"</li>
+                </ol>
+                <p>Your site is now secure with HTTPS!</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Launch Your Site?</h3>
+                <p>Start with Cloudways free trial - no credit card needed.</p>
+                <a href="https://www.cloudways.com/" class="btn btn-primary" target="_blank">Try Cloudways Free</a>
+                <p style="margin-top: 16px; font-size: 0.9rem;">Use code <strong>BIG3D</strong> for 30% off 3 months</p>
+            </div>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> I may earn a commission if you purchase through my link at no extra cost to you.
+            </div>
+
+            <h2>Related Posts</h2>
+            <div class="related-posts">
+                <ul>
+                    <li><a href="post-cloudways-review.html">Cloudways Review: Is It the Best Cloud Hosting?</a></li>
+                    <li><a href="post-cloudways-promo-codes.html">Cloudways Promo Codes: Get 30% Off</a></li>
+                    <li><a href="post-how-to-migrate-wordpress-to-wp-engine.html">How to Migrate WordPress (WP Engine Guide)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+</body>
+</html>
