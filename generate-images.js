@@ -25,7 +25,27 @@ const posts = [
   { file: 'img-design-trends-vs-timeless.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#7c3aed', accent2: '#00d4aa' },
   { file: 'img-website-security.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#ff6b6b', accent2: '#00d4aa' },
   { file: 'img-cta-button-design.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#ffd700', accent2: '#00d4aa' },
-  { file: 'img-web-design-portfolio.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#7c3aed', accent2: '#00d4aa' }
+   { file: 'img-web-design-portfolio.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#7c3aed', accent2: '#00d4aa' },
+  { file: 'img-keyword-research.png', gradient: ['#0a0a0f', '#1a0a2e'], accent: '#4facfe', accent2: '#00d4aa' },
+  { file: 'img-onpage-seo.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#00d4aa', accent2: '#ffd700' },
+  { file: 'img-technical-seo.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#ff6b6b', accent2: '#00d4aa' },
+  { file: 'img-seo-for-beginners.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#7c3aed', accent2: '#00d4aa' },
+  { file: 'img-link-building.png', gradient: ['#0a0a0f', '#0a1a2e'], accent: '#4facfe', accent2: '#00d4aa' },
+  { file: 'img-local-seo.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#ff6b6b', accent2: '#00d4aa' },
+  { file: 'img-seo-audit.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#00d4aa', accent2: '#ffd700' },
+  { file: 'img-seo-content-writing.png', gradient: ['#0a0a0f', '#0a1a2e'], accent: '#4facfe', accent2: '#00d4aa' },
+  { file: 'img-google-search-console.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#ff6b6b', accent2: '#00d4aa' },
+  { file: 'img-seo-tools.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#20c997', accent2: '#17a2b8' },
+  { file: 'img-ecommerce-seo.png', gradient: ['#0a0a0f', '#1a0a2e'], accent: '#28a745', accent2: '#20c997' },
+  { file: 'img-mobile-seo.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#fd7e14', accent2: '#ffc107' },
+  { file: 'img-page-speed-seo.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#dc3545', accent2: '#fd7e14' },
+  { file: 'img-image-seo.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#e83e8c', accent2: '#fd7e14' },
+  { file: 'img-video-seo.png', gradient: ['#0a0a0f', '#1a0a2e'], accent: '#ff0000', accent2: '#ff6b6b' },
+  { file: 'img-international-seo.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#6610f2', accent2: '#6f42c1' },
+  { file: 'img-voice-search-seo.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#6f42c1', accent2: '#e83e8c' },
+  { file: 'img-featured-snippets.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#fd7e14', accent2: '#ffc107' },
+  { file: 'img-penalty-recovery.png', gradient: ['#0a0a0f', '#1a0a2e'], accent: '#dc3545', accent2: '#e83e8c' },
+  { file: 'img-seo-metrics.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#20c997', accent2: '#6610f2' }
 ];
 
 function hexToRgb(hex) {

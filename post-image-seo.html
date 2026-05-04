@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Optimize images for search engines and improve page speed. Learn image SEO best practices including alt text, file names, compression, and schema markup.">
+    <meta name="keywords" content="image SEO, image optimization, alt text, image search, Google Images SEO, image compression, WebP format">
+    <meta name="author" content="Tochukwu">
+    <meta property="og:title" content="Image SEO: Optimize Images for Search & Page Speed">
+    <meta property="og:description" content="Optimize images for search engines and improve page speed. Learn image SEO best practices including alt text, file names, compression, and schema markup.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tochukwu.example.com/post-image-seo.html">
+    <meta property="og:image" content="images/post-image-seo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image SEO: Optimize Images for Search & Page Speed">
+    <meta name="twitter:description" content="Optimize images for search engines and improve page speed. Learn image SEO best practices including alt text, file names, compression, and schema markup.">
+    <title>Image SEO: Optimize Images for Search & Page Speed | Tochukwu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .post-hero {
+            background: linear-gradient(135deg, #e83e8c 0%, #fd7e14 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect x="200" y="200" width="600" height="600" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" rx="50"/></svg>');
+            background-size: 50% 50%;
+            opacity: 0.3;
+        }
+        .post-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .post-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .post-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #e83e8c;
+            margin: 3rem 0 1.5rem;
+            border-left: 4px solid #e83e8c;
+            padding-left: 1rem;
+        }
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin: 2rem 0 1rem;
+        }
+            .post-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+        .checklist {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .checklist li {
+            list-style: none;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #e83e8c;
+            font-weight: bold;
+        }
+        .format-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .format-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border-left: 3px solid #e83e8c;
+        }
+        .format-card h4 {
+            color: #e83e8c;
+            margin: 0 0 0.5rem 0;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #e83e8c 0%, #fd7e14 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .cta-box h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #e83e8c;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 62, 140, 0.3);
+        }
+        .faq-section {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 0.5rem;
+        }
+        .faq-answer {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .tip-box {
+            background: #1e1e1e;
+            border-left: 4px solid #e83e8c;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong {
+            color: #e83e8c;
+        }
+        .related-posts {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .related-posts h3 {
+            color: #e83e8c;
+            margin-bottom: 1.5rem;
+        }
+        .related-posts a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .related-posts a:hover {
+            color: #e83e8c;
+        }
+        @media (max-width: 768px) {
+            .post-hero h1 {
+                font-size: 2rem;
+            }
+            .post-content h2 {
+                font-size: 1.5rem;
+            }
+            .format-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Image SEO: Optimize Images for Search & Page Speed",
+        "description": "Optimize images for search engines and improve page speed. Learn image SEO best practices including alt text, file names, compression, and schema markup.",
+        "author": {
+            "@type": "Person",
+            "name": "Tochukwu"
+        },
+        "datePublished": "2026-05-04",
+        "dateModified": "2026-05-04"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does image optimization affect SEO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, image optimization affects both traditional SEO (through Google Images) and page speed SEO. Properly optimized images can drive significant traffic from image search and improve overall page performance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the best image format for SEO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "WebP is the best format for SEO as it provides superior compression while maintaining quality. Use JPEG for photographs, PNG for graphics with transparency, and SVG for icons and logos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I write good alt text for SEO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Good alt text describes the image accurately and concisely, includes relevant keywords naturally, and provides context for visually impaired users. Avoid keyword stuffing."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I use lazy loading for images?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, lazy loading improves initial page load speed by only loading images when they're about to enter the viewport. This is especially important for pages with many images."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What size should images be for web?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Resize images to the maximum display size needed. Don't upload a 4000px wide image if it only displays at 800px. Aim for under 200KB per image for optimal performance."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Tochukwu</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blogs.html" class="active">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <h1>Image SEO: Optimize Images for Search & Page Speed</h1>
+        <p>Images drive 20% of search traffic but are often overlooked. Learn how to optimize images for both Google Images and page speed</p>
+    </div>
+
+    <div class="post-content">
+        <p>Images are often the largest components of web pages, yet many websites neglect image SEO. Properly optimized images can drive significant traffic from Google Images, improve page load speed, and enhance user experience—all factors that contribute to better rankings.</p>
+
+        <h2>Why Image SEO Matters</h2>
+        <ul>
+            <li><strong>Google Images traffic:</strong> 20% of all searches are image searches</li>
+            <li><strong>Page speed impact:</strong> Images often account for 50%+ of page weight</li>
+            <li><strong>Accessibility:</strong> Alt text helps visually impaired users</li>
+            <li><strong>Context for search engines:</strong> Images help search engines understand your content</li>
+            <li><strong>Rich results:</strong> Optimized images can appear in rich snippets</li>
+        </ul>
+
+        <h2>Image File Names</h2>
+        <p>Before uploading, rename your image files descriptively:</p>
+        <ul>
+            <li><strong>Bad:</strong> IMG_12345.jpg, DSC0001.jpg</li>
+            <li><strong>Good:</strong> red-running-shoes-nike-air-max.jpg</li>
+            <li>Use hyphens (-) not underscores (_) to separate words</li>
+            <li>Include target keywords naturally</li>
+            <li>Keep filenames concise but descriptive</li>
+        </ul>
+
+        <h2>Alt Text Optimization</h2>
+        <p>Alt text (alternative text) is crucial for SEO and accessibility:</p>
+        <ul>
+            <li>Describe the image accurately and concisely</li>
+            <li>Include relevant keywords naturally (no stuffing)</li>
+            <li>Keep under 125 characters for screen readers</li>
+            <li>Use empty alt="" for decorative images</li>
+            <li>Don't start with "Image of" or "Picture of"—screen readers already announce it</li>
+        </ul>
+
+        <p><strong>Example:</strong></p>
+        <ul>
+            <li>Bad: <code>&lt;img src="shoe.jpg" alt="shoe"&gt;</code></li>
+            <li>Good: <code>&lt;img src="red-nike-running-shoes.jpg" alt="Red Nike Air Max running shoes on white background"&gt;</code></li>
+        </ul>
+
+        <h2>Image Compression & File Size</h2>
+        <p>Large images slow down your site. Compress images before uploading:</p>
+
+        <div class="format-comparison">
+            <div class="format-card">
+                <h4>WebP</h4>
+                <p>Best compression, supports transparency and animation. Use for most images.</p>
+            </div>
+            <div class="format-card">
+                <h4>JPEG</h4>
+                <p>Good for photographs. Use quality setting of 70-80 for web.</p>
+            </div>
+            <div class="format-card">
+                <h4>PNG</h4>
+                <p>Use for graphics with transparency. Compress with tools like TinyPNG.</p>
+            </div>
+            <div class="format-card">
+                <h4>SVG</h4>
+                <p>Perfect for logos, icons, and illustrations. Scalable and tiny file size.</p>
+            </div>
+        </div>
+
+        <h2>Image Compression Tools</h2>
+        <ul>
+            <li><strong>TinyPNG / TinyJPG:</strong> Excellent online compression tool</li>
+            <li><strong>Squoosh:</strong> Google's image compression tool with format conversion</li>
+            <li><strong>ImageOptim:</strong> Mac app for lossless compression</li>
+            <li><strong>ShortPixel:</strong> WordPress plugin for automatic compression</li>
+            <li><strong>Photoshop "Save for Web":</strong> Professional compression options</li>
+        </ul>
+
+        <h2>Responsive Images</h2>
+        <p>Serve appropriately sized images for different devices:</p>
+        <p>Use the <code>srcset</code> attribute to provide multiple image sizes:</p>
+        <pre style="background:#1e1e1e;padding:1rem;border-radius:8px;overflow-x:auto;color:#d0d0d0;"><code>&lt;img src="small.jpg"
+     srcset="small.jpg 300w, medium.jpg 600w, large.jpg 1200w"
+     sizes="(max-width: 600px) 300px, (max-width: 1200px) 600px, 1200px"
+     alt="Description"&gt;</code></pre>
+
+        <div class="checklist">
+            <h3>Image SEO Checklist</h3>
+            <ul>
+                <li>Descriptive file name with keywords (using hyphens)</li>
+                <li>Compressed file size (under 200KB when possible)</li>
+                <li>Descriptive alt text for every image</li>
+                <li>Appropriate image dimensions (don't scale with HTML/CSS)</li>
+                <li>Next-gen format (WebP with JPEG fallback)</li>
+                <li>Lazy loading implemented for below-fold images</li>
+                <li>Image sitemap created (for sites with many images)</li>
+                <li>Structured data (ImageObject schema) for important images</li>
+                <li>CDN for image delivery</li>
+            </ul>
+        </div>
+
+        <h2>Image Sitemaps</h2>
+        <p>For websites with many images (e-commerce, photography), create an image sitemap:</p>
+        <ul>
+            <li>List important images in a dedicated sitemap</li>
+            <li>Include image title, caption, geo_location, and license if applicable</li>
+            <li>Submit to Google Search Console</li>
+        </ul>
+
+        <h2>Structured Data for Images</h2>
+        <p>Use Schema.org markup to provide search engines more context:</p>
+        <pre style="background:#1e1e1e;padding:1rem;border-radius:8px;overflow-x:auto;color:#d0d0d0;"><code>{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": "https://example.com/image.jpg",
+  "description": "Red Nike running shoes",
+  "name": "Nike Air Max Red Running Shoes"
+}</code></pre>
+
+        <h2>Common Image SEO Mistakes</h2>
+        <ol>
+            <li><strong>Using generic filenames:</strong> IMG123.jpg tells search engines nothing</li>
+            <li><strong>Missing alt text:</strong> Every image should have alt text</li>
+            <li><strong>Oversized images:</strong> Uploading 4000px wide images for 400px display</li>
+            <li><strong>Not using lazy loading:</strong> Loading all images on page load</li>
+            <li><strong>Hotlinking:</strong> Using images from other sites (steals bandwidth, hurts SEO)</li>
+            <li><strong>Ignoring mobile:</strong> Not optimizing images for mobile devices</li>
+        </ol>
+
+        <div class="tip-box">
+            <strong>Pro Tip:</strong> Use WebP format with a JPEG/PNG fallback for best compression and compatibility. WebP images are 25-35% smaller than JPEG with similar quality.
+        </div>
+
+        <div class="cta-box">
+            <h3>Are Your Images Optimized?</h3>
+            <p>Let me audit your site's images and implement optimizations that improve speed and search visibility.</p>
+            <a href="contact.html" class="cta-button">Get Image SEO Help</a>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Does image optimization affect SEO?</div>
+                <div class="faq-answer">Yes, image optimization affects both traditional SEO through Google Images and page speed SEO. Optimized images can drive significant traffic from image search and improve overall page performance, which is a ranking factor.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the best image format for SEO?</div>
+                <div class="faq-answer">WebP is the best format for SEO as it provides superior compression while maintaining quality. Use JPEG for photographs, PNG for graphics with transparency, SVG for icons and logos, and always provide appropriate fallbacks.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I write good alt text for SEO?</div>
+                <div class="faq-answer">Good alt text accurately describes the image, includes relevant keywords naturally, provides context, and remains concise (under 125 characters). Avoid keyword stuffing and don't start with "Image of" as screen readers already announce it.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Should I use lazy loading for images?</div>
+                <div class="faq-answer">Yes, lazy loading improves initial page load speed by only loading images when they're about to enter the viewport. This is especially important for pages with many images and is now natively supported in browsers with the loading="lazy" attribute.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What size should images be for web?</div>
+                <div class="faq-answer">Resize images to the maximum display size needed. Don't upload a 4000px wide image if it only displays at 800px. Aim for under 200KB per image for optimal performance, and use responsive images with srcset for different screen sizes.</div>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h3>Related Posts</h3>
+            <a href="post-page-speed-seo.html">→ Page Speed SEO: Core Web Vitals Guide</a>
+            <a href="post-onpage-seo.html">→ On-Page SEO Checklist to Boost Rankings</a>
+            <a href="post-technical-seo.html">→ Technical SEO Audit Checklist for 2026</a>
+            <a href="post-seo-content-writing.html">→ SEO Content Writing Guide for Higher Rankings</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tochukwu</h3>
+                <p>Professional web design and SEO services to help your business grow online.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#">Web Design</a>
+                <a href="#">SEO Optimization</a>
+                <a href="#">Brand Identity</a>
+                <a href="#">Web Development</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tochukwu. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

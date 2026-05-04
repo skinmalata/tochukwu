@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master Core Web Vitals and page speed optimization. Learn how to improve site speed for better SEO rankings and user experience in 2026.">
+    <meta name="keywords" content="page speed SEO, Core Web Vitals, site speed optimization, LCP, FID, CLS, page speed ranking factor, website performance">
+    <meta name="author" content="Tochukwu">
+    <meta property="og:title" content="Page Speed SEO: Master Core Web Vitals for Rankings">
+    <meta property="og:description" content="Master Core Web Vitals and page speed optimization. Learn how to improve site speed for better SEO rankings and user experience in 2026.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tochukwu.example.com/post-page-speed-seo.html">
+    <meta property="og:image" content="images/post-page-speed-seo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Page Speed SEO: Master Core Web Vitals for Rankings">
+    <meta name="twitter:description" content="Master Core Web Vitals and page speed optimization. Learn how to improve site speed for better SEO rankings and user experience in 2026.">
+    <title>Page Speed SEO: Master Core Web Vitals for Rankings | Tochukwu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .post-hero {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M0,500 Q250,250 500,500 T1000,500" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 50% 50%;
+            opacity: 0.3;
+        }
+        .post-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .post-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .post-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #dc3545;
+            margin: 3rem 0 1.5rem;
+            border-left: 4px solid #dc3545;
+            padding-left: 1rem;
+        }
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin: 2rem 0 1rem;
+        }
+            .post-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+        .vital-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #dc3545;
+        }
+        .vital-card h3 {
+            margin-top: 0;
+            color: #dc3545;
+        }
+        .vital-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+        .metric-name {
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        .metric-good {
+            color: #28a745;
+            font-weight: 600;
+        }
+        .metric-poor {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .cta-box h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #dc3545;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+        }
+        .faq-section {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 0.5rem;
+        }
+        .faq-answer {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .tip-box {
+            background: #1e1e1e;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong {
+            color: #dc3545;
+        }
+        .related-posts {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .related-posts h3 {
+            color: #dc3545;
+            margin-bottom: 1.5rem;
+        }
+        .related-posts a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .related-posts a:hover {
+            color: #dc3545;
+        }
+        @media (max-width: 768px) {
+            .post-hero h1 {
+                font-size: 2rem;
+            }
+            .post-content h2 {
+                font-size: 1.5rem;
+            }
+            .vital-metric {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Page Speed SEO: Master Core Web Vitals for Rankings",
+        "description": "Master Core Web Vitals and page speed optimization. Learn how to improve site speed for better SEO rankings and user experience in 2026.",
+        "author": {
+            "@type": "Person",
+            "name": "Tochukwu"
+        },
+        "datePublished": "2026-05-04",
+        "dateModified": "2026-05-04"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What are Core Web Vitals?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Core Web Vitals are three specific metrics Google uses to measure user experience: Largest Contentful Paint (LCP) for loading, Interaction to Next Paint (INP) for interactivity, and Cumulative Layout Shift (CLS) for visual stability."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How fast should my website load?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Aim for LCP under 2.5 seconds, INP under 200 milliseconds, and CLS score under 0.1. These are Google's thresholds for 'good' user experience."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does page speed really affect rankings?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, page speed is a confirmed ranking factor. Sites that load faster tend to rank higher, especially on mobile. Speed also affects user experience metrics that indirectly impact rankings."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the best tool to measure page speed?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Google PageSpeed Insights is the best starting point as it uses real Chrome user data. Also use GTmetrix, WebPageTest, and Chrome DevTools for comprehensive analysis."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I improve Core Web Vitals scores?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For LCP: optimize images, use CDN, preload critical resources. For INP: minimize JavaScript, optimize event handlers. For CLS: set size attributes on images, avoid inserting content above existing content."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Tochukwu</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blogs.html" class="active">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <h1>Page Speed SEO: Master Core Web Vitals for Rankings</h1>
+        <p>Page speed is a confirmed ranking factor. Learn how to optimize your site's performance for better SEO and user experience</p>
+    </div>
+
+    <div class="post-content">
+        <p>In 2021, Google made page experience a ranking factor, with Core Web Vitals at the center. Sites that load quickly and provide smooth user experiences now have a measurable advantage in search rankings.</p>
+
+        <h2>Understanding Core Web Vitals</h2>
+        <p>Core Web Vitals are three specific metrics Google uses to measure real-world user experience:</p>
+
+        <div class="vital-card">
+            <h3>LCP - Largest Contentful Paint</h3>
+            <p>Measures loading performance. LCP marks the point when the largest content element becomes visible.</p>
+            <div class="vital-metric">
+                <span class="metric-name">Good</span>
+                <span class="metric-good">≤ 2.5 seconds</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Needs Improvement</span>
+                <span>2.5 - 4.0 seconds</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Poor</span>
+                <span class="metric-poor">> 4.0 seconds</span>
+            </div>
+        </div>
+
+        <div class="vital-card">
+            <h3>INP - Interaction to Next Paint</h3>
+            <p>Measures interactivity. INP assesses the time from when a user interacts with your page to when the browser responds.</p>
+            <div class="vital-metric">
+                <span class="metric-name">Good</span>
+                <span class="metric-good">≤ 200 milliseconds</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Needs Improvement</span>
+                <span>200 - 500 milliseconds</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Poor</span>
+                <span class="metric-poor">> 500 milliseconds</span>
+            </div>
+        </div>
+
+        <div class="vital-card">
+            <h3>CLS - Cumulative Layout Shift</h3>
+            <p>Measures visual stability. CLS quantifies how much elements shift around during page load.</p>
+            <div class="vital-metric">
+                <span class="metric-name">Good</span>
+                <span class="metric-good">≤ 0.1</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Needs Improvement</span>
+                <span>0.1 - 0.25</span>
+            </div>
+            <div class="vital-metric">
+                <span class="metric-name">Poor</span>
+                <span class="metric-poor">> 0.25</span>
+            </div>
+        </div>
+
+        <h2>How to Measure Page Speed</h2>
+        <p>Use these tools to assess your site's performance:</p>
+        <ul>
+            <li><strong>Google PageSpeed Insights:</strong> Free tool with Core Web Vitals data from real users</li>
+            <li><strong>Google Search Console:</strong> Core Web Vitals report shows site-wide performance</li>
+            <li><strong>Chrome DevTools:</strong> Lighthouse audits for detailed performance insights</li>
+            <li><strong>GTmetrix:</strong> Comprehensive speed analysis with recommendations</li>
+            <li><strong>WebPageTest:</strong> Advanced testing from multiple locations</li>
+        </ul>
+
+        <h2>Optimization Strategies by Metric</h2>
+
+        <h3>Improve LCP (Loading)</h3>
+        <ul>
+            <li>Optimize and compress images (use WebP format)</li>
+            <li>Implement lazy loading for below-the-fold images</li>
+            <li>Use a Content Delivery Network (CDN)</li>
+            <li>Preload critical resources (fonts, hero images)</li>
+            <li>Minimize CSS and JavaScript</li>
+            <li>Upgrade to faster hosting</li>
+            <li>Reduce server response time (TTFB)</li>
+        </ul>
+
+        <h3>Improve INP (Interactivity)</h3>
+        <ul>
+            <li>Minimize and defer JavaScript</li>
+            <li>Break up long tasks (code splitting)</li>
+            <li>Use web workers for heavy computations</li>
+            <li>Optimize event handlers</li>
+            <li>Remove unused JavaScript</li>
+            <li>Implement code splitting and lazy loading</li>
+        </ul>
+
+        <h3>Improve CLS (Visual Stability)</h3>
+        <ul>
+            <li>Set explicit width and height attributes on images and videos</li>
+            <li>Reserve space for ads and embeds</li>
+            <li>Don't insert content above existing content (unless in response to user interaction)</li>
+            <li>Use font-display: swap to avoid invisible text during loading</li>
+            <li>Avoid animations that trigger layout changes</li>
+        </ul>
+
+        <h2>Technical Optimization Checklist</h2>
+        <ol>
+            <li><strong>Enable compression:</strong> Gzip or Brotli compression for text files</li>
+            <li><strong>Browser caching:</strong> Set appropriate Cache-Control headers</li>
+            <li><strong>Minify resources:</strong> Remove unnecessary characters from CSS, JS, HTML</li>
+            <li><strong>Optimize images:</strong> Compress, resize, use next-gen formats</li>
+            <li><strong>Reduce redirects:</strong> Each redirect adds latency</li>
+            <li><strong>Preconnect to required origins:</strong> Establish early connections to critical third-party domains</li>
+            <li><strong>Prefetch resources:</strong> Load resources the user is likely to need next</li>
+        </ol>
+
+        <div class="tip-box">
+            <strong>Pro Tip:</strong> Focus on the 20% of optimizations that deliver 80% of results. Usually, image optimization, enabling compression, and using a CDN provide the biggest speed improvements.
+        </div>
+
+        <h2>Mobile Page Speed</h2>
+        <p>Mobile optimization is even more critical than desktop:</p>
+        <ul>
+            <li>Mobile networks are often slower than Wi-Fi</li>
+            <li>Mobile devices have less processing power</li>
+            <li>Google uses mobile-first indexing</li>
+            <li>Mobile users are more impatient (expectations are higher)</li>
+        </ul>
+        <p><strong>Mobile-specific optimizations:</strong> Adaptive images, minimal JavaScript on mobile, simplify design for mobile, prioritize above-the-fold content</p>
+
+        <h2>Monitoring Page Speed Over Time</h2>
+        <p>Page speed isn't a one-time fix. Implement ongoing monitoring:</p>
+        <ul>
+            <li>Set up Google Search Console alerts for Core Web Vitals issues</li>
+            <li>Use continuous monitoring tools (Pingdom, Uptime.com)</li>
+            <li>Test after every major site update</li>
+            <li>Monitor competitor speeds to benchmark</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Is Your Site Fast Enough?</h3>
+            <p>Let me audit your site's performance and implement speed optimizations that boost rankings and conversions.</p>
+            <a href="contact.html" class="cta-button">Get Speed Audit</a>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What are Core Web Vitals?</div>
+                <div class="faq-answer">Core Web Vitals are three specific metrics Google uses to measure user experience: Largest Contentful Paint (LCP) measures loading speed, Interaction to Next Paint (INP) measures interactivity, and Cumulative Layout Shift (CLS) measures visual stability.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How fast should my website load?</div>
+                <div class="faq-answer">Aim for LCP under 2.5 seconds, INP under 200 milliseconds, and CLS score under 0.1. These are Google's thresholds for 'good' user experience. Mobile sites should meet the same standards.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Does page speed really affect rankings?</div>
+                <div class="faq-answer">Yes, page speed is a confirmed ranking factor. Google has explicitly stated that faster sites rank better. Additionally, speed affects bounce rate, time on site, and conversions—all of which indirectly impact SEO.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What's the best tool to measure page speed?</div>
+                <div class="faq-answer">Google PageSpeed Insights is the best starting point as it combines lab data with real-world Chrome user data. For comprehensive analysis, also use Google Search Console's Core Web Vitals report and Chrome DevTools Lighthouse.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I improve Core Web Vitals scores?</div>
+                <div class="faq-answer">For LCP: optimize images, use CDN, preload critical resources, minimize CSS/JS. For INP: minimize JavaScript, break up long tasks, optimize event handlers. For CLS: set size attributes on media, avoid inserting content above existing content.</div>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h3>Related Posts</h3>
+            <a href="post-mobile-seo.html">→ Mobile SEO: Optimize for Mobile-First Indexing</a>
+            <a href="post-technical-seo.html">→ Technical SEO Audit Checklist for 2026</a>
+            <a href="post-image-seo.html">→ Image SEO: Optimize Images for Search</a>
+            <a href="post-seo-for-beginners.html">→ SEO for Beginners: Complete Guide</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tochukwu</h3>
+                <p>Professional web design and SEO services to help your business grow online.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#">Web Design</a>
+                <a href="#">SEO Optimization</a>
+                <a href="#">Brand Identity</a>
+                <a href="#">Web Development</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tochukwu. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

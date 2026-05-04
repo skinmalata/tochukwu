@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Optimize your videos for search engines and YouTube. Learn video SEO best practices including titles, descriptions, tags, and schema markup.">
+    <meta name="keywords" content="video SEO, YouTube SEO, video optimization, video schema markup, video sitemap, video search rankings">
+    <meta name="author" content="Tochukwu">
+    <meta property="og:title" content="Video SEO: Optimize Videos for YouTube & Search">
+    <meta property="og:description" content="Optimize your videos for search engines and YouTube. Learn video SEO best practices including titles, descriptions, tags, and schema markup.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tochukwu.example.com/post-video-seo.html">
+    <meta property="og:image" content="images/post-video-seo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Video SEO: Optimize Videos for YouTube & Search">
+    <meta name="twitter:description" content="Optimize your videos for search engines and YouTube. Learn video SEO best practices including titles, descriptions, tags, and schema markup.">
+    <title>Video SEO: Optimize Videos for YouTube & Search | Tochukwu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .post-hero {
+            background: linear-gradient(135deg, #ff0000 0%, #ff6b6b 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon points="500,100 900,500 500,900 100,500" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 50% 50%;
+            opacity: 0.3;
+        }
+        .post-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .post-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .post-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: #ff0000;
+            margin: 3rem 0 1.5rem;
+            border-left: 4px solid #ff0000;
+            padding-left: 1rem;
+        }
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin: 2rem 0 1rem;
+        }
+            .post-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+        .checklist {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .checklist li {
+            list-style: none;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff0000;
+            font-weight: bold;
+        }
+        .platform-tips {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #ff0000;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #ff0000 0%, #ff6b6b 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .cta-box h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .cta-box p {
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #ff0000;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+        }
+        .faq-section {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 0.5rem;
+        }
+        .faq-answer {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .tip-box {
+            background: #1e1e1e;
+            border-left: 4px solid #ff0000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong {
+            color: #ff0000;
+        }
+        .related-posts {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+        .related-posts h3 {
+            color: #ff0000;
+            margin-bottom: 1.5rem;
+        }
+        .related-posts a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .related-posts a:hover {
+            color: #ff0000;
+        }
+        @media (max-width: 768px) {
+            .post-hero h1 {
+                font-size: 2rem;
+            }
+            .post-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Video SEO: Optimize Videos for YouTube & Search",
+        "description": "Optimize your videos for search engines and YouTube. Learn video SEO best practices including titles, descriptions, tags, and schema markup.",
+        "author": {
+            "@type": "Person",
+            "name": "Tochukwu"
+        },
+        "datePublished": "2026-05-04",
+        "dateModified": "2026-05-04"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does video SEO help with Google rankings?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, video content can significantly improve your Google rankings. Pages with video are 53x more likely to appear on the first page of Google search results."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I rank videos on YouTube?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use keyword-rich titles and descriptions, create engaging thumbnails, encourage engagement (likes, comments, shares), and maintain consistent upload schedule."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I host videos on YouTube or my website?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For SEO benefits to your website, host videos on your site with schema markup. For maximum reach, use YouTube. Best approach: upload to both and link between them."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the ideal video length for SEO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For YouTube, 7-15 minutes tends to perform best. For website videos, keep them under 2-3 minutes for better engagement unless the content demands longer."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do video thumbnails affect SEO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, custom thumbnails significantly impact click-through rates, which indirectly affects rankings. Use high-quality, relevant thumbnails with text overlays when appropriate."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Tochukwu</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blogs.html" class="active">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <h1>Video SEO: Optimize Videos for YouTube & Search</h1>
+        <p>Video content dominates the web. Learn how to optimize your videos to rank on YouTube and Google search results</p>
+    </div>
+
+    <div class="post-content">
+        <p>Video content is exploding. YouTube is the world's second-largest search engine, and Google increasingly displays video results in search. Proper video SEO can dramatically increase your visibility and traffic.</p>
+
+        <h2>Why Video SEO Matters</h2>
+        <ul>
+            <li><strong>Higher rankings:</strong> Pages with video are 53x more likely to rank on page 1 of Google</li>
+            <li><strong>Increased engagement:</strong> Users spend 88% more time on pages with video</li>
+            <li><strong>YouTube traffic:</strong> Over 2 billion logged-in monthly users</li>
+            <li><strong>Rich snippets:</strong> Video thumbnails stand out in search results</li>
+            <li><strong>Social sharing:</strong> Videos are shared 1200% more than text and images combined</li>
+        </ul>
+
+        <h2>YouTube SEO Optimization</h2>
+
+        <h3>Video Titles</h3>
+        <ul>
+            <li>Front-load target keywords (first 60 characters matter most)</li>
+            <li>Keep under 60 characters for full display</li>
+            <li>Make it compelling to click (use numbers, questions, power words)</li>
+            <li>Example: "How to Bake Sourdough Bread (Step-by-Step Guide)"</li>
+        </ul>
+
+        <h3>Video Descriptions</h3>
+        <ul>
+            <li>First 2-3 sentences are crucial (shown in search results)</li>
+            <li>Include target keywords naturally in first paragraph</li>
+            <li>Add timestamps for longer videos</li>
+            <li>Include links to your website and related resources</li>
+            <li>Use 200-300 words for optimal length</li>
+        </ul>
+
+        <h3>Tags and Keywords</h3>
+        <ul>
+            <li>Use 5-8 relevant tags</li>
+            <li>Include a mix of broad and specific keywords</li>
+            <li>Add your brand name as a tag</li>
+            <li>Research competitor tags for ideas</li>
+        </ul>
+
+        <div class="checklist">
+            <h3>YouTube SEO Checklist</h3>
+            <ul>
+                <li>Keyword-optimized title (under 60 characters)</li>
+                <li>Compelling thumbnail (custom designed)</li>
+                <li>Detailed description with keywords in first paragraph</li>
+                <li>Relevant tags (5-8 tags)</li>
+                <li>Video transcript or closed captions</li>
+                <li>Engaging intro (hook within first 15 seconds)</li>
+                <li>Clear call-to-action (subscribe, visit website)</li>
+                <li>End screen with related videos</li>
+                <li>Card links to relevant content</li>
+            </ul>
+        </div>
+
+        <h2>On-Site Video SEO</h2>
+        <p>When embedding videos on your website:</p>
+
+        <h3>Video Schema Markup</h3>
+        <p>Implement VideoObject schema to help Google understand your video content:</p>
+        <pre style="background:#1e1e1e;padding:1rem;border-radius:8px;overflow-x:auto;color:#d0d0d0;"><code>{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Video Title",
+  "description": "Video description",
+  "thumbnailUrl": "https://example.com/thumbnail.jpg",
+  "uploadDate": "2026-05-04T08:00:00+08:00",
+  "duration": "PT2M30S",
+  "contentUrl": "https://example.com/video.mp4"
+}</code></pre>
+
+        <h3>Video Sitemaps</h3>
+        <p>Create a dedicated video sitemap to help Google discover your videos:</p>
+        <ul>
+            <li>Include video title, description, thumbnail, duration</li>
+            <li>Specify video player location and thumbnail URL</li>
+            <li>Submit in Google Search Console</li>
+        </ul>
+
+        <h3>Video Hosting Considerations</h3>
+        <div class="platform-tips">
+            <h3>Self-Hosting vs YouTube</h3>
+            <p><strong>Self-hosting benefits:</strong> Full control, SEO benefits stay on your domain, no competitor ads</p>
+            <p><strong>YouTube benefits:</strong> Massive audience, built-in SEO, free hosting, easy embedding</p>
+            <p><strong>Best approach:</strong> Upload to YouTube for reach, embed on your site with schema for SEO benefits to both platforms.</p>
+        </div>
+
+        <h2>Video Content Optimization</h2>
+        <ul>
+            <li><strong>Transcripts and captions:</strong> Improve accessibility and provide keyword-rich text for search engines</li>
+            <li><strong>Engaging thumbnails:</strong> Custom thumbnails get more clicks than auto-generated ones</li>
+            <li><strong>Video length:</strong> 7-15 minutes performs best on YouTube; shorter for website embeds</li>
+            <li><strong>Watch time:</strong> Create compelling content that keeps viewers watching</li>
+        </ul>
+
+        <h2>Promoting Videos for SEO</h2>
+        <ol>
+            <li><strong>Embed on relevant blog posts:</strong> Contextual embedding helps both video and page SEO</li>
+            <li><strong>Share on social media:</strong> Drive initial views and engagement signals</li>
+            <li><strong>Email to subscribers:</strong> Early engagement helps rankings</li>
+            <li><strong>Embed in newsletters:</strong> Increase views and engagement</li>
+            <li><strong>Collaborate with others:</strong> Guest appearances expand reach</li>
+        </ol>
+
+        <div class="tip-box">
+            <strong>Pro Tip:</strong> Add timestamps to your YouTube video descriptions. Not only does this improve user experience, Google sometimes displays timestamped links directly in search results, increasing click-through rate.
+        </div>
+
+        <h2>Measuring Video SEO Success</h2>
+        <p>Track these metrics to gauge your video SEO performance:</p>
+        <ul>
+            <li><strong>Search rankings:</strong> Track video rankings in Google and YouTube</li>
+            <li><strong>Watch time:</strong> Average view duration and retention rate</li>
+            <li><strong>Click-through rate:</strong> Percentage of impressions resulting in views</li>
+            <li><strong>Engagement:</strong> Likes, comments, shares, subscribers gained</li>
+            <li><strong>Traffic to website:</strong> Referral traffic from video embeds</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Want to Rank Your Videos Higher?</h3>
+            <p>Let me optimize your video content for both YouTube and Google search to maximize your reach.</p>
+            <a href="contact.html" class="cta-button">Get Video SEO Help</a>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Does video SEO help with Google rankings?</div>
+                <div class="faq-answer">Yes, video content can significantly improve your Google rankings. Pages with video are 53x more likely to appear on the first page of Google search results, and video-rich snippets get higher click-through rates.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I rank videos on YouTube?</div>
+                <div class="faq-answer">Use keyword-rich titles and descriptions, create engaging custom thumbnails, encourage engagement (likes, comments, shares), maintain consistent upload schedule, and optimize your channel page for discoverability.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Should I host videos on YouTube or my website?</div>
+                <div class="faq-answer">For maximum SEO benefits to your website, host videos on your site with proper schema markup. For maximum reach and discovery, use YouTube. The best approach is to upload to both and cross-link between them.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What's the ideal video length for SEO?</div>
+                <div class="faq-answer">For YouTube, 7-15 minutes tends to perform best for monetization and watch time. For website videos, keep them under 2-3 minutes for better engagement unless the content demands longer format.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do video thumbnails affect SEO?</div>
+                <div class="faq-answer">Yes, custom thumbnails significantly impact click-through rates. Higher CTRs signal quality to both YouTube and Google, indirectly improving rankings. Use high-quality, relevant thumbnails with minimal but effective text overlays.</div>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h3>Related Posts</h3>
+            <a href="post-image-seo.html">→ Image SEO: Optimize Images for Search</a>
+            <a href="post-seo-content-writing.html">→ SEO Content Writing Guide for Higher Rankings</a>
+            <a href="post-onpage-seo.html">→ On-Page SEO Checklist to Boost Rankings</a>
+            <a href="post-technical-seo.html">→ Technical SEO Audit Checklist for 2026</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tochukwu</h3>
+                <p>Professional web design and SEO services to help your business grow online.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#">Web Design</a>
+                <a href="#">SEO Optimization</a>
+                <a href="#">Brand Identity</a>
+                <a href="#">Web Development</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tochukwu. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
