@@ -675,6 +675,135 @@
             font-size: 0.9rem;
         }
 
+        /* Blog Section */
+        .blog-preview {
+            background: var(--bg-secondary);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .blog-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-content {
+            padding: 28px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .blog-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .blog-card h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .blog-card h3 a:hover {
+            color: var(--accent);
+        }
+
+        .blog-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .read-more:hover {
+            gap: 8px;
+        }
+
+        .section-cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .about-grid {
@@ -691,6 +820,10 @@
 
             .hero p {
                 font-size: 1.1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
             }
         }
     .portfolio {
@@ -1065,65 +1198,114 @@
         </div>
     </section>
 
-     <section id="skills">
-         <div class="container">
-              <div class="section-header">
-                   <h2 class="section-title">Tech Stack</h2>
-              </div>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">🌐</div>
-                        <h4>WordPress</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🏗️</div>
-                        <h4>Wix</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🛒</div>
-                        <h4>Shopify</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🐘</div>
-                        <h4>PHP</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">⚛️</div>
-                        <h4>React</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🟢</div>
-                        <h4>Node.js</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🐍</div>
-                        <h4>Python</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🦋</div>
-                        <h4>Flutter</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🔷</div>
-                        <h4>Next.js</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">📘</div>
-                        <h4>TypeScript</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">💨</div>
-                        <h4>Tailwind CSS</h4>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">📊</div>
-                        <h4>PostgreSQL</h4>
-                    </div>
-                </div>
-         </div>
-     </section>
+      <section id="skills">
+          <div class="container">
+               <div class="section-header">
+                    <h2 class="section-title">Tech Stack</h2>
+               </div>
+                 <div class="skills-grid">
+                     <div class="skill-card">
+                         <div class="skill-icon">🌐</div>
+                         <h4>WordPress</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🏗️</div>
+                         <h4>Wix</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🛒</div>
+                         <h4>Shopify</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🐘</div>
+                         <h4>PHP</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">⚛️</div>
+                         <h4>React</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🟢</div>
+                         <h4>Node.js</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🐍</div>
+                         <h4>Python</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🦋</div>
+                         <h4>Flutter</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">🔷</div>
+                         <h4>Next.js</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">📘</div>
+                         <h4>TypeScript</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">💨</div>
+                         <h4>Tailwind CSS</h4>
+                     </div>
+                     <div class="skill-card">
+                         <div class="skill-icon">📊</div>
+                         <h4>PostgreSQL</h4>
+                     </div>
+                 </div>
+          </div>
+      </section>
 
-     <footer>
+      <section class="blog-preview" id="blogs">
+          <div class="container">
+               <div class="section-header">
+                    <h2 class="section-title">Latest Articles</h2>
+                    <p class="section-subtitle">Expert insights on web development, hosting reviews, and SEO strategies to help you build and grow online.</p>
+               </div>
+               <div class="blog-grid">
+                   <div class="blog-card">
+                       <div class="blog-card-content">
+                           <span class="blog-category">Hosting Review</span>
+                           <h3><a href="post-wp-engine-review.html">WP Engine Review: Is It Worth the Premium Price?</a></h3>
+                           <p>Honest review from a developer who fixes hacked sites daily. Discover why managed WordPress hosting matters.</p>
+                           <div class="blog-meta">
+                               <span>By Tochukwu Mesigo</span>
+                               <a href="post-wp-engine-review.html" class="read-more">Read More →</a>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="blog-card">
+                       <div class="blog-card-content">
+                           <span class="blog-category">Performance</span>
+                           <h3><a href="post-improve-website-speed.html">How to Improve Website Loading Speed: 10 Proven Strategies</a></h3>
+                           <p>Learn 10 proven strategies to improve website loading speed. Boost your SEO rankings and conversions.</p>
+                           <div class="blog-meta">
+                               <span>By Tochukwu Mesigo</span>
+                               <a href="post-improve-website-speed.html" class="read-more">Read More →</a>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="blog-card">
+                       <div class="blog-card-content">
+                           <span class="blog-category">E-commerce</span>
+                           <h3><a href="post-shopify-review.html">Shopify Review: Best E-commerce Platform for Small Businesses?</a></h3>
+                           <p>Honest Shopify review from a developer. Is it the best e-commerce platform for your online store?</p>
+                           <div class="blog-meta">
+                               <span>By Tochukwu Mesigo</span>
+                               <a href="post-shopify-review.html" class="read-more">Read More →</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="section-cta">
+                   <a href="blogs.html" class="btn btn-primary">View All Articles</a>
+               </div>
+          </div>
+      </section>
+
+      <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">Tochukwu Mesigo</div>
