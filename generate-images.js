@@ -45,7 +45,8 @@ const posts = [
   { file: 'img-voice-search-seo.png', gradient: ['#0a0a0f', '#1a0a1a'], accent: '#6f42c1', accent2: '#e83e8c' },
   { file: 'img-featured-snippets.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#fd7e14', accent2: '#ffc107' },
   { file: 'img-penalty-recovery.png', gradient: ['#0a0a0f', '#1a0a2e'], accent: '#dc3545', accent2: '#e83e8c' },
-  { file: 'img-seo-metrics.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#20c997', accent2: '#6610f2' }
+  { file: 'img-seo-metrics.png', gradient: ['#0a0a0f', '#0f0f18'], accent: '#20c997', accent2: '#6610f2' },
+  { file: 'img-linkbio-dynamodb-single-table.png', gradient: ['#0a0a0f', '#0f1a1a'], accent: '#00d4aa', accent2: '#4facfe' }
 ];
 
 function hexToRgb(hex) {

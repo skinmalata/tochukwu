@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Built a Link-in-Bio Platform Using DynamoDB Single-Table Design — Here's What I Learned | Tochukwu Mesigo</title>
+    <meta name="description" content="Building LinkBio — a link-in-bio platform with Next.js 16, DynamoDB single-table design, and S3. Lessons from schema design to production deployment.">
+    <link rel="canonical" href="https://tochukwumesigo.com/post-linkbio-dynamodb-single-table.html">
+    <meta property="og:title" content="I Built a Link-in-Bio Platform Using DynamoDB Single-Table Design — Here's What I Learned | Tochukwu Mesigo">
+    <meta property="og:description" content="Building LinkBio — a link-in-bio platform with Next.js 16, DynamoDB single-table design, and S3. Lessons from schema design to production deployment.">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Tochukwu Mesigo">
+    <meta property="og:image" content="img-linkbio-dynamodb-single-table.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #14141c;
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --accent-secondary: #7c3aed;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a9e;
+            --text-muted: #55556a;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 212, 170, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .blog-post {
+            max-width: 900px;
+            margin: 140px auto 80px;
+            padding: 0 24px;
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .post-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 48px 0 24px;
+            color: var(--accent);
+        }
+
+        .post-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .post-content strong {
+            color: var(--text-primary);
+        }
+
+        .post-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .post-content th, .post-content td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-content th {
+            background: var(--bg-secondary);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .post-content .check {
+            color: var(--accent);
+        }
+
+        .post-content .cross {
+            color: #ff6b6b;
+        }
+
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #00b894);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            padding: 20px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 24px 0;
+            font-family: 'Space Grotesk', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            color: var(--accent);
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: var(--text-secondary);
+        }
+
+        .code-block .highlight {
+            color: var(--accent);
+        }
+
+        .disclosure {
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 40px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .back-to-blogs {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .post-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .post-content table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "I Built a Link-in-Bio Platform Using DynamoDB Single-Table Design — Here's What I Learned",
+      "description": "Building LinkBio — a link-in-bio platform with Next.js 16, DynamoDB single-table design, and S3. Lessons from schema design to production deployment.",
+      "author": {
+        "@type": "Person",
+        "name": "Tochukwu Mesigo",
+        "url": "https://tochukwumesigo.com"
+      },
+       "publisher": {
+        "@type": "Person",
+        "name": "Tochukwu Mesigo"
+      }
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZK9Z6WT91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TZK9Z6WT91');
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tochukwu Mesigo</div>
+            <div class="hamburger" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-header">
+            <h1 class="post-title">I Built a Link-in-Bio Platform Using DynamoDB Single-Table Design — Here's What I Learned</h1>
+            <div class="post-meta">By Tochukwu Mesigo | Web Developer & SEO Specialist</div>
+        </div>
+
+        <div class="post-content">
+            <h2>The Problem</h2>
+            <p>Every creator needs a link-in-bio page. But most options charge $12–$15/month for what is essentially a list of buttons. Small YouTubers, TikTok sellers, and artists don't need that overhead — they need something free that works, with the option to upgrade when they actually need more.</p>
+            <p>So I built <strong>LinkBio</strong> — a fully functional link-in-bio platform deployed on Vercel, powered by Next.js 16, Amazon DynamoDB, and S3.</p>
+            <p>Live app: <a href="https://linkbio-five-sigma.vercel.app" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">https://linkbio-five-sigma.vercel.app</a><br>
+            Source: <a href="https://github.com/skinmalata/linkbio" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">https://github.com/skinmalata/linkbio</a></p>
+
+            <h2>Why DynamoDB (and Why Single-Table Design)</h2>
+            <p>A link-in-bio page is a textbook key-value workload. Every public page load needs four things:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Resolve the username to a user ID</li>
+                <li>Fetch the profile + theme</li>
+                <li>Fetch the links</li>
+                <li>Fetch the featured products</li>
+            </ul>
+            <p>That's four indexed lookups. No joins, no transactions, no relational queries.</p>
+            <p>I used a single-table design with composite PK/SK keys. The schema was built around actual access patterns, not entity relationships:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Access Pattern</th>
+                        <th>PK / SK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Username lookup</td><td>USERNAME#{handle} / PROFILE</td></tr>
+                    <tr><td>Profile data</td><td>USER#{userId} / PROFILE</td></tr>
+                    <tr><td>User's links</td><td>USER#{userId} / LINK#{linkId}</td></tr>
+                    <tr><td>User's products</td><td>USER#{userId} / PRODUCT#{productId}</td></tr>
+                    <tr><td>Click redirect</td><td>LINKID#{shortId} / META</td></tr>
+                    <tr><td>Click events</td><td>CLICK#{linkId} / TS#{timestamp}</td></tr>
+                </tbody>
+            </table>
+
+            <p>The username resolution is O(1) — no secondary index needed. Profile + links + products for a page load are fetched via three parallel Query calls with <code style="color: var(--accent);">begins_with</code> on the sort key. Each page load runs in under 10ms at the database layer.</p>
+            <p>The click event schema deserves special mention. Because the sort key is <code style="color: var(--accent);">TS#{timestamp}</code>, time-range queries for analytics charts are a native DynamoDB operation — I filter by sort key prefix instead of scanning old data. Without this design, every analytics query would degrade as a popular link accumulates thousands of clicks.</p>
+
+            <h2>Architecture Overview</h2>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Visitor → Next.js Server Component → DynamoDB (4 parallel queries) → Rendered page</li>
+                <li>Click on link → /api/track/{linkId} → record event → 302 redirect</li>
+                <li>Admin signs in with Google → Dashboard UI → CRUD via API routes</li>
+            </ul>
+            <p>The public profile page is a Server Component — it queries DynamoDB directly, no API round-trip. The dashboard is all Client Components talking to API routes protected by NextAuth v5.</p>
+            <p>File uploads (avatars, product images) go through /api/upload → S3 → URL stored in DynamoDB.</p>
+
+            <h2>Features</h2>
+            <h3>Free Tier</h3>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Unlimited page views</li>
+                <li>3 links</li>
+                <li>All 6 themes (Minimal, Dark, Forest, Ocean, Sunset, Lavender)</li>
+                <li>Click analytics with trend charts and traffic sources</li>
+            </ul>
+
+            <h3>Pro Tier ($9/month via Stripe)</h3>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Unlimited links</li>
+                <li>Custom domains with CNAME setup guide</li>
+                <li>Product shop (up to 10 items with images, prices, 60+ currencies)</li>
+                <li>Advanced analytics with Recharts (LineChart + PieChart)</li>
+            </ul>
+
+            <h2>The Click Tracking Flow</h2>
+            <p>The tracking endpoint at /api/track/{linkId} does three things in about 50ms:</p>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li>Looks up the target URL from LINKID#{linkId}</li>
+                <li>Writes a click event to CLICK#{linkId} with timestamp, referrer, and user agent</li>
+                <li>Redirects the browser with a 302</li>
+            </ul>
+            <p>The analytics page queries those events grouped by day for trend charts and by referrer for the source breakdown. Referrers are categorized (Google, Twitter, YouTube, Direct, etc.) so the pie chart is immediately useful instead of showing raw URLs.</p>
+
+            <h2>What Shipping Taught Me</h2>
+            <p>A friend in a creator Discord was the first real user. She runs a small sticker shop on Etsy and set up her page in about 90 seconds. Her feedback was exactly what I needed: the themes are genuinely good (Forest and Sunset are the most-used), the shop integration makes sense for her use case, and the free tier doesn't feel like a trial.</p>
+            <p>What she wants most is drag-to-reorder for links. The links are stored with a position integer and sorted on retrieval, but there's no drag UI yet. It's the next thing I'm building.</p>
+
+            <h2>Tech Stack</h2>
+            <p>Next.js 16, TypeScript, Tailwind CSS 4, Amazon DynamoDB (single-table), Amazon S3, NextAuth v5 (Google OAuth), Stripe, Recharts, deployed on Vercel.</p>
+
+            <div class="cta-box">
+                <h3>Try LinkBio Free</h3>
+                <p>No credit card required. Get your link-in-bio page set up in under 2 minutes.</p>
+                <a href="https://linkbio-five-sigma.vercel.app" class="btn btn-primary" target="_blank">Visit LinkBio →</a>
+                <a href="https://github.com/skinmalata/linkbio" class="btn btn-outline" target="_blank">View Source on GitHub</a>
+            </div>
+
+            <p>Built for the #H0Hackathon. If you're building something similar or have feedback, I'd love to hear it on GitHub: <a href="https://github.com/skinmalata/linkbio" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">https://github.com/skinmalata/linkbio</a></p>
+
+            <div class="disclosure">
+                <strong>Disclosure:</strong> This is a personal project I built for a hackathon. No affiliate links, just open-source code and honest lessons learned.
+            </div>
+
+            <h2>Related Posts</h2>
+            <ul style="margin: 16px 0 16px 40px; color: var(--text-secondary);">
+                <li><a href="post-choose-web-hosting.html" style="color: var(--accent);">How to Choose the Right Web Hosting for Your Website</a></li>
+                <li><a href="post-improve-website-speed.html" style="color: var(--accent);">How to Improve Website Loading Speed: 10 Proven Strategies</a></li>
+                <li><a href="post-website-security.html" style="color: var(--accent);">Website Security Best Practices Every Developer Should Know</a></li>
+            </ul>
+        </div>
+
+        <div class="back-to-blogs">
+            <a href="blogs.html" class="btn btn-outline">← Back to All Blogs</a>
+        </div>
+    </article>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
